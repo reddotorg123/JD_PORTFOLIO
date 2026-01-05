@@ -57,24 +57,42 @@ export const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="space-y-6"
           >
-            <div className="glass-dark rounded-2xl p-8">
-              <h3 className="text-xl font-display font-semibold text-primary mb-4">
+            <div className="glass-dark rounded-2xl p-8 relative overflow-hidden group">
+              {/* Bio glitter effect */}
+              <div className="absolute inset-0 pointer-events-none">
+                {[...Array(30)].map((_, i) => (
+                  <span
+                    key={i}
+                    className="absolute w-1 h-1 rounded-full animate-pulse"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                      backgroundColor: `hsl(${40 + Math.random() * 20}, 100%, ${60 + Math.random() * 30}%)`,
+                      boxShadow: `0 0 ${4 + Math.random() * 6}px hsl(45, 100%, 70%)`,
+                      animationDelay: `${Math.random() * 2}s`,
+                      animationDuration: `${1 + Math.random() * 2}s`,
+                      opacity: 0.6 + Math.random() * 0.4,
+                    }}
+                  />
+                ))}
+              </div>
+              <h3 className="text-xl font-display font-semibold text-primary mb-4 relative z-10">
                 Professional Summary
               </h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p className="text-muted-foreground leading-relaxed mb-4 relative z-10">
                 I'm a driven Electronics & Communication Engineering student
                 with a strong foundation in IoT, Embedded Systems, and VLSI
                 design. My expertise lies in bridging hardware intelligence with
                 modern software solutions to create innovative, real-world
                 applications.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p className="text-muted-foreground leading-relaxed mb-4 relative z-10">
                 With multiple hackathon wins under my belt and hands-on industry
                 experience, I've demonstrated my ability to conceptualize,
                 design, and deliver impactful projects in healthcare technology,
                 environmental monitoring, and telecommunications.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed relative z-10">
                 I'm passionate about leveraging technology for sustainability
                 and healthcare innovation, constantly seeking opportunities to
                 apply my skills to solve pressing global challenges through
