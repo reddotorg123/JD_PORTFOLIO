@@ -58,24 +58,6 @@ export const About = () => {
             className="space-y-6"
           >
             <div className="glass-dark rounded-2xl p-8 relative overflow-hidden group">
-              {/* Bio glitter effect */}
-              <div className="absolute inset-0 pointer-events-none">
-                {[...Array(30)].map((_, i) => (
-                  <span
-                    key={i}
-                    className="absolute w-1 h-1 rounded-full animate-pulse"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                      backgroundColor: `hsl(${40 + Math.random() * 20}, 100%, ${60 + Math.random() * 30}%)`,
-                      boxShadow: `0 0 ${4 + Math.random() * 6}px hsl(45, 100%, 70%)`,
-                      animationDelay: `${Math.random() * 2}s`,
-                      animationDuration: `${1 + Math.random() * 2}s`,
-                      opacity: 0.6 + Math.random() * 0.4,
-                    }}
-                  />
-                ))}
-              </div>
               <h3 className="text-xl font-display font-semibold text-primary mb-4 relative z-10">
                 Professional Summary
               </h3>
