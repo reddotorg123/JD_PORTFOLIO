@@ -8,10 +8,12 @@ import { Achievements } from "@/components/Achievements";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { RainbowCursor } from "@/components/RainbowCursor";
+import { GlitterBackground } from "@/components/GlitterBackground";
 
 const Index = () => {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background relative">
+      <GlitterBackground />
       <RainbowCursor />
       <Navbar />
       <Hero />
