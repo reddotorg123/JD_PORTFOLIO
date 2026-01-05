@@ -7,10 +7,12 @@ import { Skills } from "@/components/Skills";
 import { Achievements } from "@/components/Achievements";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { RainbowCursor } from "@/components/RainbowCursor";
 
 const Index = () => {
   return (
     <main className="min-h-screen bg-background">
+      <RainbowCursor />
       <Navbar />
       <Hero />
       <About />
