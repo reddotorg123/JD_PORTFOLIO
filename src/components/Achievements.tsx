@@ -66,6 +66,13 @@ const achievements = [
     prize: "₹1,000",
     year: "2025",
   },
+  {
+    place: "1st",
+    title: "First Place – Project Expo",
+    venue: "Savitha College Of Engineering",
+    prize: "₹4,000",
+    year: "2025",
+  },
 ];
 
 export const Achievements = () => {
