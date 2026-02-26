@@ -73,6 +73,38 @@ const achievements = [
     prize: "₹4,000",
     year: "2025",
   },
+  {
+    place: "1st",
+    title: "First Place – Project Expo",
+    venue: "Velammal Engineering collage",
+    prize: "₹4,000",
+    year: "2026",
+  },
+  {
+    place: "1st",
+    title: "First Place – Project Expo",
+    venue: "RMD College Of Engineering",
+    prize: "₹1,500",
+    year: "2026",
+  },
+  {
+    place: "2nd",
+    title: "second Place – Paper Presentation",
+    venue: "RMD College Of Engineering",
+    prize: "₹1,000",
+    year: "2025",
+  },
+  {
+    place: "2nd",
+    title: "Second Place - 36 hrs Hackathon",
+    venue: "New Prince College Of Engineering",
+    prize: "₹12,000",
+    year: "2026",
+  },
+  
+  
+  
+  
 ];
 
 export const Achievements = () => {
