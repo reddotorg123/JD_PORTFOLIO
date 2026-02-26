@@ -3,10 +3,10 @@ import { useRef } from "react";
 import { Trophy, Medal, Award, Star } from "lucide-react";
 
 const stats = [
-  { value: "8+", label: "Total Awards", icon: Trophy },
-  { value: "5", label: "First Places", icon: Medal },
-  { value: "₹28K+", label: "Prize Money", icon: Award },
-  { value: "2025", label: "Active Year", icon: Star },
+  { value: "13+", label: "Total Awards", icon: Trophy },
+  { value: "7", label: "First Places", icon: Medal },
+  { value: "₹51K+", label: "Prize Money", icon: Award },
+  { value: "2026", label: "Active Year", icon: Star },
 ];
 
 const achievements = [
