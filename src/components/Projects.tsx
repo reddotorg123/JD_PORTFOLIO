@@ -47,14 +47,7 @@ const projects = [
     "Exportable simulation data for performance analysis and model tuning",
   ],
 
-  tags: [
-    "Python",
-    "Machine Learning",
-    "Random Forest",
-    "4G/5G Networks",
-    "Streamlit Dashboard",
-    "Data Visualization",
-  ],
+  tags: ["Python","Machine Learning","Random Forest","4G/5G Networks","Streamlit Dashboard","Data Visualization",],
 }
   {
     title: "Battery Management & Smart Control System",
