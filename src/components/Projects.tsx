@@ -2,33 +2,18 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const projects = [
-{
-  title: "MEDIGLOVE – Offline Hospital Emergency IoT Ecosystem",
-  description:
-    "A fully offline, emergency-first hospital IoT ecosystem engineered for ICUs and wards, enabling deterministic low-latency emergency alerts, real-time patient vitals monitoring, and accountable nurse–doctor response workflows without cloud dependency.",
-
-  features: [
-    "Offline-first ESP32 SoftAP architecture eliminating internet dependency and ensuring deterministic emergency response",
-    "Multi-device ecosystem: Patient unit (ESP32), Nurse Pager (ESP8266), Doctor Pager (ESP32) with autonomous emergency detection",
-    "Emergency-priority connection locking system preventing reconnect loops and ensuring stable alert handling",
-    "Real-time vitals acquisition (Heart Rate, SpO₂, Body Temperature, Environmental Data) via MAX3010x, DS18B20, and DHT sensors",
-    "Human accountability workflow: Nurse acknowledgment, assistance request, and doctor arrival confirmation logged with names",
-    "Custom HTTP API layer (/data, /clear, /assist, /arrival) for structured inter-device communication using JSON payloads",
-    "AUTO and MANUAL operational modes for ward-level scalability and targeted patient monitoring",
-    "Configurable web-based provisioning mode for device setup without firmware modification",
-  ],
-
-  tags: [
-    "ESP32",
-    "ESP8266",
-    "Embedded C",
-    "Offline IoT Architecture",
-    "HTTP Server",
-    "ArduinoJson",
-    "MAX30102",
-    "Real-Time Systems",
-  ],
-}
+  {
+    title: "TESTlove – First Offline Based Emergency Alert System",
+    description:
+      "An innovative IoT-enabled glove designed to assist patients with limited mobility and provide real-time health monitoring capabilities for caregivers and medical professionals.",
+    features: [
+      "Advanced gesture detection using flex sensors for intuitive patient communication",
+      "Real-time heart rate, SpO₂, and temperature monitoring with MAX30102 sensor",
+      "IoT-enabled emergency alert system with Firebase cloud integration",
+      "Live health dashboard for remote monitoring by healthcare providers",
+    ],
+    tags: ["Arduino Nano", "ESP8266", "Flex Sensors", "MAX30102", "Firebase"],
+  },
   {
     title: "AirAware – Air Quality Monitoring & Forecast System",
     description:
