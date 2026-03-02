@@ -17,17 +17,21 @@ const projects = [
     tags: [ "ESP32","ESP8266","Embedded C","Offline IoT","HTTP Server","MAX30102","Real-Time Systems",],
   },
   {
-    title: "AirAware – Air Quality Monitoring & Forecast System",
-    description:
-      "A comprehensive environmental monitoring solution designed specifically for rural and semi-urban regions to track and predict air quality conditions.",
-    features: [
-      "Real-time temperature and humidity monitoring with DHT11 sensor",
-      "Cloud-based data logging using Firebase for historical analysis",
-      "Intelligent alert system for hazardous air quality conditions",
-      "Predictive analysis for air quality forecasting",
-      "Tailored solution for underserved rural and semi-urban communities",
-    ],
-    tags: ["ESP8266", "DHT11", "Firebase", "Web Dashboard"],
+  title: "PCDB – 360° Pipeline Crack Detection Robot",
+  description:
+    "A 360-degree ultrasonic pipeline inspection robot using Pulse–Echo NDT principles to detect internal cracks in real time, process echo-time variations via ESP32, and transmit structural health data for remote monitoring.",
+
+  features: [
+    "Ultrasonic Pulse–Echo based non-destructive crack detection (ASME/ISO compliant principle)",
+    "360° rotating probe mounted on circular frame for full pipeline surface coverage",
+    "ESP32-based signal acquisition and echo time-of-flight analysis",
+    "Crack detection via early echo reflection & amplitude variation mapping",
+    "Real-time alert system with location display and buzzer warning",
+    "IoT-enabled data transmission for remote monitoring dashboard",
+  ],
+
+  tags: [
+    "ESP32","Ultrasonic NDT","Robotics","Signal Processing","IoT Monitoring","Non-Destructive Testing",],
   },
   {
     title: "Dynamic Spectrum Allocation (4G/5G Simulation)",
