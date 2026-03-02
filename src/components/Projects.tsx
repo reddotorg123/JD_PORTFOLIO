@@ -34,18 +34,28 @@ const projects = [
     "ESP32","Ultrasonic NDT","Robotics","Signal Processing","IoT Monitoring","Non-Destructive Testing",],
   },
   {
-    title: "Dynamic Spectrum Allocation (4G/5G Simulation)",
-    description:
-      "A machine learning-powered simulation platform for optimizing spectrum allocation in modern cellular networks with real-time congestion prediction.",
-    features: [
-      "Multi-cell spectrum simulation for 4G and 5G network scenarios",
-      "Machine learning-based congestion prediction using Random Forest algorithm",
-      "Interactive heatmaps for visualizing spectrum utilization",
-      "Real-time gauges and throughput trend analysis",
-      "Automated alert system for network optimization",
-    ],
-    tags: ["Python", "Streamlit", "Random Forest (ML)", "Data Visualization"],
-  },
+  title: "Dynamic Spectrum Allocation – 4G/5G ML Simulation Platform",
+  description:
+    "A machine learning-powered simulation dashboard for dynamic spectrum allocation in 4G/5G networks, predicting congestion states using Random Forest and optimizing band utilization in real time.",
+
+  features: [
+    "Multi-cell spectrum allocation simulation with configurable band and traffic parameters",
+    "Random Forest-based congestion prediction using band load and capacity features",
+    "Real-time throughput, fairness, and utilization monitoring dashboard",
+    "Alert generation for proactive congestion management",
+    "Dynamic reallocation logic for optimized network efficiency",
+    "Exportable simulation data for performance analysis and model tuning",
+  ],
+
+  tags: [
+    "Python",
+    "Machine Learning",
+    "Random Forest",
+    "4G/5G Networks",
+    "Streamlit Dashboard",
+    "Data Visualization",
+  ],
+}
   {
     title: "Battery Management & Smart Control System",
     description:
