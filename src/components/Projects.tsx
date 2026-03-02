@@ -5,14 +5,16 @@ const projects = [
   {
     title: "MEDIGLOVE – Offline Hospital Emergency IoT Ecosystem",
     description:
-      "A fully offline, emergency-first hospital IoT ecosystem engineered for ICUs and wards, enabling deterministic low-latency emergency alerts, real-time patient vitals monitoring, and accountable nurse–doctor response workflows without cloud dependency.",
+      "An offline-first hospital IoT architecture engineered for ICUs and wards, enabling deterministic low-latency emergency alerts, real-time vitals monitoring, and accountable nurse–doctor response workflows without internet dependency.",
     features: [
-      "Offline-first ESP32 SoftAP architecture eliminating internet dependency and ensuring deterministic emergency response",
-      "Real-time heart rate, SpO₂, and temperature monitoring with MAX30102 sensor",
-      "IoT-enabled emergency alert system with Firebase cloud integration",
-      "Live health dashboard for remote monitoring by healthcare providers",
+       "ESP32 SoftAP-based patient unit acting as a local emergency server",
+    "Multi-device ecosystem: Patient Unit, Nurse Pager, Doctor Pager",
+    "Emergency-priority connection locking to prevent reconnect instability",
+    "Real-time vitals monitoring (HR, SpO₂, Body Temp, Environmental Data)",
+    "Custom HTTP API (/data, /clear, /assist, /arrival) using JSON communication",
+    "Traceable nurse acknowledgment & doctor arrival logging with stored names",
     ],
-    tags: ["Arduino Nano", "ESP8266", "Flex Sensors", "MAX30102", "Firebase"],
+    tags: [ "ESP32","ESP8266","Embedded C","Offline IoT","HTTP Server","MAX30102","Real-Time Systems",],
   },
   {
     title: "AirAware – Air Quality Monitoring & Forecast System",
