@@ -3,11 +3,11 @@ import { useRef } from "react";
 
 const projects = [
   {
-    title: "TESTlove – First Offline Based Emergency Alert System",
+    title: "MEDIGLOVE – Offline Hospital Emergency IoT Ecosystem",
     description:
-      "An innovative IoT-enabled glove designed to assist patients with limited mobility and provide real-time health monitoring capabilities for caregivers and medical professionals.",
+      "A fully offline, emergency-first hospital IoT ecosystem engineered for ICUs and wards, enabling deterministic low-latency emergency alerts, real-time patient vitals monitoring, and accountable nurse–doctor response workflows without cloud dependency.",
     features: [
-      "Advanced gesture detection using flex sensors for intuitive patient communication",
+      "Offline-first ESP32 SoftAP architecture eliminating internet dependency and ensuring deterministic emergency response",
       "Real-time heart rate, SpO₂, and temperature monitoring with MAX30102 sensor",
       "IoT-enabled emergency alert system with Firebase cloud integration",
       "Live health dashboard for remote monitoring by healthcare providers",
