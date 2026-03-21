@@ -7,9 +7,18 @@ export const Footer = () => {
     <footer className="py-8 border-t border-border">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <span>© {currentYear} Jagadish K. Made with</span>
-            <Heart className="w-4 h-4 text-primary fill-primary" />
+          <div className="flex flex-col md:flex-row items-center gap-6 text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <span>© {currentYear} Jagadish K. Made with</span>
+              <Heart className="w-4 h-4 text-primary fill-primary" />
+            </div>
+            <a 
+              href="/resume.pdf" 
+              download="Jagadish_K_Resume.pdf"
+              className="text-primary/70 hover:text-primary transition-colors text-sm font-bold tracking-wider uppercase border-l border-border pl-6 hidden md:block"
+            >
+              Download Resume
+            </a>
           </div>
 
           <div className="flex items-center gap-4">
