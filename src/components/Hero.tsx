@@ -101,14 +101,14 @@ export const Hero = () => {
               className="flex gap-6 items-center"
             >
               {[
-                { icon: Github, link: "https://github.com", label: "GitHub" },
-                { icon: Linkedin, link: "https://linkedin.com", label: "LinkedIn" },
-                { icon: Mail, link: "mailto:jagadish2k2006@gmail.com", label: "Email" }
+                { icon: Github, link: "https://github.com/JAGADISH2006-DEV", label: "GitHub" },
+                { icon: Linkedin, link: "https://www.linkedin.com/in/jagadish-k-583996351", label: "LinkedIn" },
+                { icon: Mail, link: "#contact", label: "Email" }
               ].map((social, i) => (
                 <motion.a
                   key={i}
                   href={social.link}
-                  target="_blank"
+                  target={social.link.startsWith('http') ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   whileHover={{ y: -5, scale: 1.1 }}
                   className="group relative flex items-center justify-center"

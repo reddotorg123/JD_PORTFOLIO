@@ -98,9 +98,16 @@ export const Contact = () => {
               ))}
             </div>
 
-            <Button variant="gold" size="lg" className="gap-2">
-              <Download className="w-4 h-4" />
-              Download Resume
+            <Button variant="gold" size="lg" className="gap-2" asChild>
+              <a 
+                href="/Jagadish_K_CV.pdf" 
+                download="Jagadish_K_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Download className="w-4 h-4" />
+                Download Resume
+              </a>
             </Button>
           </motion.div>
 

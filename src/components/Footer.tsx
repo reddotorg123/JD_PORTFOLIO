@@ -13,9 +13,11 @@ export const Footer = () => {
               <Heart className="w-4 h-4 text-primary fill-primary" />
             </div>
             <a 
-              href="/resume.pdf" 
-              download="Jagadish_K_Resume.pdf"
-              className="text-primary/70 hover:text-primary transition-colors text-sm font-bold tracking-wider uppercase border-l border-border pl-6 hidden md:block"
+              href="/Jagadish_K_CV.pdf" 
+              download="Jagadish_K_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary/70 hover:text-primary transition-colors text-sm font-bold tracking-wider uppercase md:border-l md:border-border md:pl-6"
             >
               Download Resume
             </a>
@@ -23,7 +25,7 @@ export const Footer = () => {
 
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com"
+              href="https://github.com/JAGADISH2006-DEV"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -31,7 +33,7 @@ export const Footer = () => {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/jagadish-k-583996351"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
