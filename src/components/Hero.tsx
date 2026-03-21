@@ -92,9 +92,9 @@ export const Hero = () => {
               <Button variant="gold" size="lg" className="rounded-2xl px-8 h-14 text-base font-bold shadow-gold-lg hover:scale-105 transition-transform" asChild>
                 <a href="#contact">Get in Touch</a>
               </Button>
-              <Button variant="outline" size="lg" className="rounded-2xl px-8 h-14 text-base font-bold border-gold-500/30 hover:bg-gold-500/10 hover:border-gold-500/50 transition-all text-white" asChild>
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                  Download CV
+              <Button variant="outline" size="lg" className="rounded-2xl px-8 h-14 text-base font-bold border-gold-500/30 hover:bg-gold-500/10 hover:border-gold-500/50 transition-all text-white uppercase" asChild>
+                <a href="/resume.pdf" download="Jagadish_K_Resume.pdf">
+                  Download Resume
                 </a>
               </Button>
             </motion.div>
