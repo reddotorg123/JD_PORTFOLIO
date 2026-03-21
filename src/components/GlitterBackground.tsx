@@ -70,10 +70,7 @@ export const GlitterBackground = () => {
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
-      canvas.height = Math.max(
-        document.documentElement.scrollHeight,
-        window.innerHeight * 2
-      );
+      canvas.height = window.innerHeight;
     };
 
     const createParticles = () => {

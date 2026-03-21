@@ -7,6 +7,7 @@ const navItems = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
+  { label: "Products", href: "#products" },
   { label: "Skills", href: "#skills" },
   { label: "Achievements", href: "#achievements" },
   { label: "Contact", href: "#contact" },
@@ -30,11 +31,11 @@ export const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass-dark py-3" : "py-6"
+        isScrolled ? "glass-dark py-4" : "py-8"
       }`}
     >
       <nav className="container mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="text-2xl font-display font-bold text-primary">
+        <a href="#" className="text-3xl font-display font-black text-primary tracking-tighter">
           JK
         </a>
 
@@ -44,7 +45,7 @@ export const Navbar = () => {
             <li key={item.label}>
               <a
                 href={item.href}
-                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors duration-300"
+                className="text-base font-bold text-foreground/80 hover:text-primary transition-colors duration-300 uppercase tracking-widest"
               >
                 {item.label}
               </a>
