@@ -3,9 +3,9 @@ import { useRef } from "react";
 import { Trophy, Medal, Award, Star } from "lucide-react";
 
 const stats = [
-  { value: "14+", label: "Total Awards", icon: Trophy },
+  { value: "16+", label: "Total Awards", icon: Trophy },
   { value: "7", label: "First Places", icon: Medal },
-  { value: "₹56K+", label: "Prize Money", icon: Award },
+  { value: "₹69K+", label: "Prize Money", icon: Award },
   { value: "2026", label: "Active Year", icon: Star },
 ];
 
@@ -109,9 +109,21 @@ const achievements = [
     year: "2026",
   },
   
+  {
+    place: "2nd",
+    title: "Second Place - 24 hrs Hackathon",
+    venue: "Kalasalingam University",
+    prize: "₹10,000",
+    year: "2026",
+  },
   
-  
-  
+  {
+    place: "2nd",
+    title: "Second Place - Project expo",
+    venue: "Kalasalingam University",
+    prize: "₹3,000",
+    year: "2026",
+  },
 ];
 
 export const Achievements = () => {
