@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Database, Cpu } from "lucide-react";
+import { CheckSquare } from "lucide-react";
 
 type Product = {
   title: string;
@@ -18,14 +18,10 @@ const products: Product[] = [
     link: "https://sem-pro.vercel.app",
   },
   {
-    title: "ECHO STREAM",
-    description: "Revolutionary audio-to-data mapping ecosystem for real-time monitoring and analytics.",
-    icon: Cpu,
-  },
-  {
-    title: "VECTOR HUB",
-    description: "High-performance vector storage and management for large-scale RAG systems.",
-    icon: Database,
+    title: "HABIT TRACKER",
+    description: "Premium gamified daily tracker with interactive analytical streaks and modern aesthetics.",
+    icon: CheckSquare,
+    link: "https://habit-tk.vercel.app",
   },
 ];
 
@@ -74,7 +70,7 @@ export const Products = () => {
                   ) : product.icon ? (
                     <product.icon className="w-12 h-12 md:w-16 md:h-16 text-gold-500 group-hover:drop-shadow-[0_0_15px_rgba(255,183,0,0.5)] transition-all duration-500" />
                   ) : null}
-                  
+
                   {/* Subtle Glow behind icon */}
                   <div className="absolute inset-0 bg-gold-500/5 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
