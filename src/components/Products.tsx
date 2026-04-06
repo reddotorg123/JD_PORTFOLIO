@@ -18,7 +18,7 @@ const products: Product[] = [
     link: "https://sem-pro.vercel.app",
   },
   {
-    title: "HABIT TRACKER",
+    title: "HABIT",
     description: "Premium gamified daily tracker with interactive analytical streaks and modern aesthetics.",
     iconImage: "/habit-icon.png",
     link: "https://habit-tk.vercel.app",
