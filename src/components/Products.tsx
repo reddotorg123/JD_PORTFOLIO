@@ -20,7 +20,7 @@ const products: Product[] = [
   {
     title: "HABIT TRACKER",
     description: "Premium gamified daily tracker with interactive analytical streaks and modern aesthetics.",
-    icon: CheckSquare,
+    iconImage: "/habit-icon.png",
     link: "https://habit-tk.vercel.app",
   },
 ];
