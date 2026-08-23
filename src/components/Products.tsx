@@ -1,11 +1,10 @@
-﻿import { motion } from "framer-motion";
-import { ExternalLink, Paperclip } from "lucide-react";
+﻿import { ExternalLink, Paperclip } from "lucide-react";
 
 const dossierProducts = [
   {
     id: "reddot",
     tabLabel: "_REDDOT_01",
-    tabLeft: "left-4 sm:left-8",
+    tabPosition: "left-6 sm:left-10",
     topOffset: "top-24 sm:top-28",
     zIndex: 10,
     classification: "Multimodal AI & IoT Platform",
@@ -29,8 +28,8 @@ const dossierProducts = [
   {
     id: "sem",
     tabLabel: "_SEMPRO_02",
-    tabLeft: "left-36 sm:left-48",
-    topOffset: "top-28 sm:top-36",
+    tabPosition: "left-36 sm:left-48",
+    topOffset: "top-28 sm:top-32",
     zIndex: 20,
     classification: "Student Academic Performance Suite",
     role: "Lead Architect & Developer",
@@ -53,8 +52,8 @@ const dossierProducts = [
   {
     id: "habit",
     tabLabel: "_HABIT_03",
-    tabLeft: "left-68 sm:left-88",
-    topOffset: "top-32 sm:top-44",
+    tabPosition: "left-64 sm:left-84",
+    topOffset: "top-32 sm:top-36",
     zIndex: 30,
     classification: "Gamified Discipline & Streak Analytics",
     role: "Product Designer & Engineer",
@@ -91,22 +90,22 @@ export const Products = () => {
             </h2>
           </div>
           <p className="text-neutral-400 text-xs font-tech uppercase tracking-wider">
-            Scroll down to watch folders stack and overlay
+            Scroll to watch folders stack and overlay
           </p>
         </div>
 
-        {/* Sticky Overlay Stacking Folders Container */}
-        <div className="space-y-32 sm:space-y-48 pb-20">
+        {/* Sticky Stacking Scroll Track */}
+        <div className="relative pb-64 space-y-48">
           {dossierProducts.map((p, idx) => (
             <div
               key={p.id}
               style={{ zIndex: p.zIndex }}
-              className={`sticky ${p.topOffset} select-none will-change-transform`}
+              className={`sticky ${p.topOffset} select-none transition-transform duration-300`}
             >
-              {/* Folder Top Tab with Staggered Horizontal Offset */}
+              {/* Folder Top Tab */}
               <div className="relative w-full h-8">
                 <div
-                  className={`absolute ${p.tabLeft} top-0 px-5 py-1.5 rounded-t-xl bg-[#1e1e28] border-t border-x border-white/20 font-mono text-[11px] font-bold text-white uppercase tracking-widest shadow-xl flex items-center gap-1.5`}
+                  className={`absolute ${p.tabPosition} top-0 px-5 py-1.5 rounded-t-xl bg-[#1e1e28] border-t border-x border-white/20 font-mono text-[11px] font-bold text-white uppercase tracking-widest shadow-2xl flex items-center gap-1.5`}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
                   <span>{p.tabLabel}</span>
@@ -115,7 +114,7 @@ export const Products = () => {
 
               {/* Compact Folder Card Surface */}
               <div
-                className={`relative rounded-b-2xl rounded-tr-2xl ${p.folderBg} border border-white/20 p-4 sm:p-6 shadow-[0_30px_90px_rgba(0,0,0,0.95)] overflow-hidden transition-shadow duration-300 hover:border-white/40`}
+                className={`relative rounded-b-2xl rounded-tr-2xl ${p.folderBg} border border-white/20 p-4 sm:p-6 shadow-[0_35px_100px_rgba(0,0,0,0.98)] overflow-hidden transition-all duration-300 hover:border-white/40`}
               >
                 {/* Metallic Top Binder Clip */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 z-30 hidden sm:flex flex-col items-center">
@@ -128,7 +127,7 @@ export const Products = () => {
                 <div className="grid md:grid-cols-12 gap-5 sm:gap-6 items-stretch pt-2">
                   {/* Left Page: Spiral Notebook Sheet */}
                   <div className="md:col-span-5 relative bg-[#e4e6ea] text-[#121216] rounded-xl p-4 sm:p-5 shadow-xl flex flex-col justify-between overflow-hidden border border-black/10">
-                    {/* Spiral Notebook Ring Holes along left edge */}
+                    {/* Spiral Notebook Ring Holes */}
                     <div className="absolute left-1.5 top-0 bottom-0 flex flex-col justify-between py-4 pointer-events-none">
                       {[...Array(8)].map((_, i) => (
                         <div

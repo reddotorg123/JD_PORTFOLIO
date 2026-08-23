@@ -18,7 +18,7 @@ const Index = () => {
   return (
     <>
       <Preloader onLoaded={() => setHasLoaded(true)} />
-      <main className="min-h-screen bg-background relative overflow-x-hidden">
+      <main className="min-h-screen bg-background relative">
         <HardwareBackground />
         <Navbar />
         <Hero />

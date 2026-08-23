@@ -2,42 +2,90 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Hexagon } from "lucide-react";
 
+const CRITICAL_IMAGES = [
+  "/id-card.png",
+  "/products/reddot-preview.png",
+  "/products/sem-preview.png",
+  "/products/habit-preview.png",
+  "/achievements/IMG_20260716_095911.jpg",
+  "/achievements/IMG_20260217_173130.jpg",
+  "/achievements/IMG_20260302_132602.jpg",
+  "/achievements/20260109_115905AMByGPSMapCamera.jpg",
+  "/achievements/IMG_20260209_133858_1.jpg",
+  "/achievements/IMG_20250921_190450.jpg",
+  "/achievements/IMG_20250823_151650.jpg",
+  "/achievements/IMG_20251010_182659.jpg",
+];
+
 export const Preloader = ({ onLoaded }: { onLoaded?: () => void }) => {
   const [progress, setProgress] = useState(0);
   const [statusText, setStatusText] = useState("INITIALIZING SYSTEM...");
   const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setIsFinished(true);
-            if (onLoaded) onLoaded();
-          }, 350);
-          return 100;
-        }
+    let loadedCount = 0;
+    const totalItems = CRITICAL_IMAGES.length + 2; // images + window load + fonts
 
-        // Variable speed increments for realistic loader feel
-        const jump = Math.floor(Math.random() * 14) + 4;
-        const next = Math.min(prev + jump, 100);
+    const updateProgress = () => {
+      loadedCount++;
+      const percent = Math.min(Math.round((loadedCount / totalItems) * 100), 100);
+      setProgress(percent);
 
-        if (next < 30) {
-          setStatusText("INITIALIZING SYSTEM ARCHITECTURE...");
-        } else if (next < 65) {
-          setStatusText("LOADING SENSORS & EMBEDDED TELEMETRY...");
-        } else if (next < 90) {
-          setStatusText("CALIBRATING 3D CORES & PERSPECTIVE...");
-        } else {
-          setStatusText("SYSTEM READY • WELCOME");
-        }
+      if (percent < 30) {
+        setStatusText("INITIALIZING SYSTEM ARCHITECTURE...");
+      } else if (percent < 70) {
+        setStatusText("LOADING ALL PRODUCT ASSETS & ARCHIVES...");
+      } else if (percent < 95) {
+        setStatusText("CALIBRATING 3D CORES & PERSPECTIVE...");
+      } else {
+        setStatusText("ALL ASSETS LOADED • SYSTEM READY");
+      }
 
-        return next;
-      });
-    }, 45);
+      if (loadedCount >= totalItems) {
+        setTimeout(() => {
+          setIsFinished(true);
+          if (onLoaded) onLoaded();
+        }, 400);
+      }
+    };
 
-    return () => clearInterval(interval);
+    // 1. Preload all critical images completely
+    CRITICAL_IMAGES.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      if (img.complete) {
+        updateProgress();
+      } else {
+        img.onload = updateProgress;
+        img.onerror = updateProgress; // Don't block forever if a single asset 404s
+      }
+    });
+
+    // 2. Wait for document fonts
+    if (document.fonts) {
+      document.fonts.ready.then(updateProgress).catch(updateProgress);
+    } else {
+      updateProgress();
+    }
+
+    // 3. Wait for full window load
+    if (document.readyState === "complete") {
+      updateProgress();
+    } else {
+      window.addEventListener("load", updateProgress, { once: true });
+    }
+
+    // Fallback safety timeout so it never hangs indefinitely
+    const safetyTimer = setTimeout(() => {
+      setProgress(100);
+      setStatusText("SYSTEM READY");
+      setTimeout(() => {
+        setIsFinished(true);
+        if (onLoaded) onLoaded();
+      }, 300);
+    }, 4500);
+
+    return () => clearTimeout(safetyTimer);
   }, [onLoaded]);
 
   return (
@@ -103,12 +151,12 @@ export const Preloader = ({ onLoaded }: { onLoaded?: () => void }) => {
             <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden relative">
               <motion.div
                 style={{ width: `${progress}%` }}
-                className="h-full bg-white rounded-full shadow-[0_0_15px_#ffffff]"
+                className="h-full bg-white rounded-full shadow-[0_0_15px_#ffffff] transition-all duration-150"
               />
             </div>
             <div className="flex items-center justify-between font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
-              <span>LOADING SYSTEM CORES</span>
-              <span>{progress === 100 ? "LAUNCHING" : "INITIALIZING"}</span>
+              <span>LOADING ALL IMAGES &amp; DOM</span>
+              <span>{progress === 100 ? "COMPLETE" : `${progress}%`}</span>
             </div>
           </div>
         </motion.div>
