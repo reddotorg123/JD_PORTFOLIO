@@ -1,173 +1,152 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Github, Linkedin, Mail, ChevronDown, Sparkles } from "lucide-react";
-import { Button } from "./ui/button";
-import profilePhoto from "@/assets/profile-photo.jpeg";
-import { useEffect, useState } from "react";
-import { HardwareInfographic } from "./HardwareInfographic";
-
-const typewriterRoles = [
-  "Creative Technologist",
-  "IoT & Embedded Systems Expert",
-  "Full-Stack Developer",
-  "Hardware-Software Architect"
-];
+﻿import { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ArrowDown } from "lucide-react";
+import idCardImg from "@/assets/id-card.png";
 
 export const Hero = () => {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [displayText, setDisplayText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleTyping = () => {
-      const currentRole = typewriterRoles[roleIndex];
-      const typed = isDeleting
-        ? currentRole.substring(0, displayText.length - 1)
-        : currentRole.substring(0, displayText.length + 1);
+  // Mouse tilt values for 3D Lanyard ID Card
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-      setDisplayText(typed);
+  const springConfig = { damping: 22, stiffness: 140 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [12, -12]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-16, 16]), springConfig);
+  const cardX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), springConfig);
 
-      if (!isDeleting && typed === currentRole) {
-        setTimeout(() => setIsDeleting(true), 2000);
-      } else if (isDeleting && typed === "") {
-        setIsDeleting(false);
-        setRoleIndex((prev) => (prev + 1) % typewriterRoles.length);
-      }
-    };
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
 
-    const timeout = setTimeout(handleTyping, isDeleting ? 50 : 100);
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, roleIndex]);
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card" />
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-[120px] animate-pulse" />
-      <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
+    <section
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative min-h-screen flex flex-col justify-between overflow-hidden id-grid-bg bg-[#08080a] pt-24 pb-8 select-none"
+    >
+      {/* Subtle Monochrome Ambient Vignette */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-white/[0.02] blur-[140px] pointer-events-none rounded-full" />
 
-      <div className="container mx-auto px-6 pt-24 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
+      {/* Main Hero Content */}
+      <div className="container mx-auto px-6 md:px-12 flex-1 flex flex-col justify-center relative z-10 my-auto">
+        {/* Giant Background Typography & Surrounding Labels */}
+        <div className="relative w-full flex items-center justify-between">
+          {/* Left Tag */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-left"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 z-0 max-w-[200px]"
           >
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-6xl md:text-8xl font-display font-black mb-6 leading-tight uppercase"
-            >
-              JAGADISH <span className="text-gradient-gold">K</span>
-            </motion.h1>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-2xl md:text-3xl text-white font-medium mb-8 h-12 uppercase"
-            >
-              {displayText}<span className="animate-pulse bg-primary w-[3px] h-full inline-block ml-1">|</span>
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-muted-foreground max-w-lg mb-10 text-lg leading-relaxed"
-            >
-              Electronics & Communication Engineer specializing in IoT, Embedded
-              Systems, and VLSI. Passionate about transforming innovative ideas
-              into impactful solutions through hardware-software integration.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4 mb-10"
-            >
-              <Button variant="gold" size="lg" className="rounded-2xl px-8 h-14 text-base font-bold shadow-gold-lg hover:scale-105 transition-transform" asChild>
-                <a href="#contact">Get in Touch</a>
-              </Button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="flex gap-6 items-center"
-            >
-              {[
-                { icon: Github, link: "https://github.com/JAGADISH2006-DEV", label: "GitHub" },
-                { icon: Linkedin, link: "https://www.linkedin.com/in/jagadish-k-583996351", label: "LinkedIn" },
-                { icon: Mail, link: "#contact", label: "Email" }
-              ].map((social, i) => (
-                <motion.a
-                  key={i}
-                  href={social.link}
-                  target={social.link.startsWith('http') ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -5, scale: 1.1 }}
-                  className="group relative flex items-center justify-center"
-                >
-                  <div className="absolute inset-0 bg-gold-500/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="p-4 rounded-2xl border border-white/5 bg-white/5 hover:border-gold-500/50 hover:bg-gold-500/5 transition-all duration-300">
-                    <social.icon className="w-6 h-6 text-muted-foreground group-hover:text-gold-400 transition-colors" />
-                  </div>
-                </motion.a>
-              ))}
-            </motion.div>
+            <div className="text-white font-tech text-xs tracking-widest font-bold uppercase mb-1">
+              (TECHNICAL HEAD)
+            </div>
+            <div className="text-neutral-400 font-tech text-xs uppercase tracking-wider">
+              FOUNDER &amp; ARCHITECT
+            </div>
           </motion.div>
 
-          {/* Profile Image Upgrade */}
+          {/* Giant Oversized Typography Behind Card */}
+          <div className="w-full text-center overflow-hidden pointer-events-none py-10">
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="text-[14vw] md:text-[17vw] font-display font-black text-white/90 leading-none tracking-tight uppercase select-none whitespace-nowrap"
+            >
+              JAGADISH.K
+            </motion.h1>
+          </div>
+
+          {/* Right Tagline */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            className="relative flex justify-center lg:justify-end"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 z-0 max-w-[220px] text-right"
           >
-            <div className="relative group">
-              {/* Hardware-themed Animated Background */}
-              <HardwareInfographic />
-              
-              <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gold-500/10 blur-3xl animate-pulse" />
-              
-              {/* Main image container with premium styling */}
-              <div className="relative z-10 w-80 h-80 md:w-[450px] md:h-[450px] rounded-[60px] md:rounded-[100px] overflow-hidden border-[6px] border-white/5 p-4 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-sm group-hover:border-gold-500/30 transition-all duration-700 hover:rotate-2">
-                <div className="w-full h-full rounded-[45px] md:rounded-[85px] overflow-hidden relative">
-                  <img
-                    src={profilePhoto}
-                    alt="Jagadish K - Creative Technologist"
-                    className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
-                  />
-                  {/* Subtle inner shadow/gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
-                </div>
+            <span className="text-white font-tech text-xs tracking-wider font-bold uppercase leading-relaxed block">
+              HARDWARE ARCHITECT &amp; EMBEDDED SYSTEMS
+            </span>
+          </motion.div>
+        </div>
+
+        {/* Centerpiece: Hanging 3D Lanyard ID Badge (Compact & Sleek Sizing) */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+          <motion.div
+            style={{
+              rotateX,
+              rotateY,
+              x: cardX,
+              transformStyle: "preserve-3d",
+            }}
+            initial={{ y: -200, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 120, damping: 14, delay: 0.1 }}
+            className="relative pointer-events-auto cursor-grab active:cursor-grabbing perspective-1000"
+          >
+            {/* Lanyard Neck Strap */}
+            <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-6 h-40 bg-[#141418] border-x border-white/10 shadow-2xl flex flex-col items-center justify-end z-0">
+              <div className="w-full h-full bg-gradient-to-b from-transparent via-[#222228] to-[#121216] opacity-90" />
+              {/* Metallic Badge Clip */}
+              <div className="w-8 h-6 bg-gradient-to-b from-[#4a4a54] to-[#25252e] rounded-t-md border border-white/20 shadow-md flex items-center justify-center -mb-2">
+                <div className="w-3 h-1 rounded-full bg-black/90" />
+              </div>
+            </div>
+
+            {/* Badge Container Frame */}
+            <div className="w-[210px] sm:w-[245px] md:w-[265px] aspect-[1/1.56] rounded-[22px] bg-[#121216] p-2 border-[3px] border-[#25252e] shadow-[0_25px_70px_rgba(0,0,0,0.95)] relative overflow-hidden backdrop-blur-xl group">
+              {/* Top Clip Hole cutout */}
+              <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-8 h-2 rounded-full bg-[#08080a] border border-white/15 z-30" />
+
+              {/* ID Card Image */}
+              <div className="w-full h-full rounded-[16px] overflow-hidden relative shadow-inner bg-black">
+                <img
+                  src={idCardImg}
+                  alt="Jagadish K - Technical Head & Founder"
+                  className="w-full h-full object-cover object-center filter contrast-105"
+                />
               </div>
             </div>
           </motion.div>
         </div>
+      </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+      {/* Hero Bottom Bar */}
+      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between text-neutral-400 font-tech text-xs z-20 pt-6">
+        <div className="flex items-center gap-2">
+          <span className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center font-bold text-white">
+            01
+          </span>
+        </div>
+
+        <a
+          href="#about"
+          className="w-10 h-10 rounded-full border border-white/15 hover:border-white hover:bg-white/5 flex items-center justify-center text-white transition-colors group"
         >
-          <a href="#about" className="group flex flex-col items-center gap-3">
-            <div className="w-8 h-12 rounded-full border-2 border-white/10 flex justify-center p-2">
-              <motion.div
-                animate={{ y: [0, 15, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="w-1.5 h-1.5 rounded-full bg-gold-500"
-              />
-            </div>
-          </a>
-        </motion.div>
+          <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+        </a>
+
+        <div className="text-right">
+          <span className="text-[10px] text-neutral-500 block uppercase tracking-wider">
+            TECHNICAL HEAD &amp; FOUNDER
+          </span>
+          <span className="text-xs font-bold text-white uppercase tracking-wider">
+            JAGADISH.K • 2026
+          </span>
+        </div>
       </div>
     </section>
   );

@@ -1,169 +1,129 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Mail, Phone, MapPin, Download, Send } from "lucide-react";
+﻿import { useState } from "react";
+import { Mail, Phone, MapPin, Download, Send, MessageSquareCode } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
-const contactInfo = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "jagadish2k2006@gmail.com",
-    href: "mailto:jagadish2k2006@gmail.com",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+91 80150 24729",
-    href: "tel:+918015024729",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "Chennai, India",
-    href: "#",
-  },
+const channels = [
+  { icon: Mail, label: "Email", val: "jagadish2k2006@gmail.com", href: "mailto:jagadish2k2006@gmail.com" },
+  { icon: MessageSquareCode, label: "WhatsApp", val: "+91 80150 24729", href: "https://wa.me/918015024729?text=Hi%20Jagadish" },
+  { icon: Phone, label: "Phone", val: "+91 80150 24729", href: "tel:+918015024729" },
+  { icon: MapPin, label: "Location", val: "Chennai, Tamil Nadu, India", href: "#" },
 ];
 
 export const Contact = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [isSending, setIsSending] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    setFormData({ name: "", email: "", message: "" });
+    setIsSending(true);
+    setTimeout(() => {
+      setIsSending(false);
+      toast({
+        title: "Message Dispatched! 🚀",
+        description: `Thank you ${formData.name}. I will reply shortly.`,
+      });
+      setFormData({ name: "", email: "", message: "" });
+    }, 700);
   };
 
   return (
-    <section id="contact" className="py-24 bg-card/50 relative">
-      <div className="container mx-auto px-6">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            Get in <span className="text-gradient-gold">Touch</span>
+    <section id="contact" className="py-20 relative bg-[#08080a] border-t border-white/10">
+      <div className="container mx-auto px-6 md:px-12 max-w-5xl">
+        <div className="text-center mb-12">
+          <span className="text-neutral-400 font-tech text-xs font-bold uppercase tracking-widest block mb-1">
+            INITIATE COLLABORATION
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-display font-black text-white uppercase tracking-tight">
+            GET IN TOUCH
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Let's discuss opportunities, collaborations, or just have a
-            conversation about technology
-          </p>
-        </motion.div>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h3 className="text-2xl font-display font-semibold mb-6">
-              Let's Connect
-            </h3>
-            <p className="text-muted-foreground mb-8">
-              I'm always open to discussing new opportunities, innovative
-              projects, or potential collaborations. Feel free to reach out!
-            </p>
+        <div className="grid md:grid-cols-12 gap-8 items-start">
+          {/* Quick Channels */}
+          <div className="md:col-span-5 space-y-3">
+            {channels.map((ch) => (
+              <a
+                key={ch.label}
+                href={ch.href}
+                target={ch.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="flex items-center gap-3.5 p-4 rounded-xl bg-[#121216] border border-white/10 hover:border-white/40 transition-all group"
+              >
+                <div className="p-2.5 rounded-lg bg-white/5 text-white group-hover:bg-white group-hover:text-black transition-all">
+                  <ch.icon className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="text-[10px] text-neutral-500 font-tech uppercase block">
+                    {ch.label}
+                  </span>
+                  <span className="text-xs font-semibold text-white font-tech group-hover:text-neutral-200 transition-colors">
+                    {ch.val}
+                  </span>
+                </div>
+              </a>
+            ))}
 
-            <div className="space-y-4 mb-8">
-              {contactInfo.map((info) => (
-                <a
-                  key={info.label}
-                  href={info.href}
-                  className="flex items-center gap-4 p-4 glass-dark rounded-xl hover:border-primary/50 transition-all duration-300 group"
-                >
-                  <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                    <info.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">{info.label}</p>
-                    <p className="font-medium">{info.value}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-
-            <Button variant="gold" size="lg" className="gap-2" asChild>
-              <a 
-                href="/Jagadish_K_CV.pdf" 
-                download="Jagadish_K_CV.pdf"
+            <Button
+              className="w-full rounded-xl h-12 bg-white hover:bg-neutral-200 text-black font-tech font-bold text-xs uppercase tracking-wider mt-4 transition-all hover:scale-[1.02]"
+              asChild
+            >
+              <a
+                href="/Jagadish_K_Resume_2026.pdf"
+                download="Jagadish_K_Resume_2026.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2"
               >
                 <Download className="w-4 h-4" />
-                Download Resume
+                Download Resume (PDF)
               </a>
             </Button>
-          </motion.div>
+          </div>
 
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <div className="glass-dark rounded-2xl p-8">
-              <h3 className="text-2xl font-display font-semibold mb-6">
-                Send a Message
-              </h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Input
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    className="bg-background/50 border-border focus:border-primary"
-                    required
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="email"
-                    placeholder="Email Address"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="bg-background/50 border-border focus:border-primary"
-                    required
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Your Message"
-                    rows={5}
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
-                    className="bg-background/50 border-border focus:border-primary resize-none"
-                    required
-                  />
-                </div>
-                <Button type="submit" variant="gold" size="lg" className="w-full gap-2">
-                  <Send className="w-4 h-4" />
-                  Send Message
-                </Button>
-              </form>
-            </div>
-          </motion.div>
+          {/* Compact Form */}
+          <div className="md:col-span-7 p-6 rounded-2xl bg-[#121216] border border-white/10">
+            <form onSubmit={handleSubmit} className="space-y-3.5">
+              <div className="grid sm:grid-cols-2 gap-3">
+                <Input
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="bg-black/50 border-white/10 text-white rounded-xl h-11 text-xs"
+                  required
+                />
+                <Input
+                  type="email"
+                  placeholder="Email Address"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="bg-black/50 border-white/10 text-white rounded-xl h-11 text-xs"
+                  required
+                />
+              </div>
+
+              <Textarea
+                placeholder="Your message or project details..."
+                rows={4}
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                className="bg-black/50 border-white/10 text-white rounded-xl text-xs resize-none p-3.5"
+                required
+              />
+
+              <Button
+                type="submit"
+                disabled={isSending}
+                className="w-full rounded-xl h-11 bg-white/10 hover:bg-white hover:text-black text-white font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+              >
+                <Send className="w-3.5 h-3.5" />
+                <span>{isSending ? "Dispatching..." : "Send Message"}</span>
+              </Button>
+            </form>
+          </div>
         </div>
       </div>
     </section>

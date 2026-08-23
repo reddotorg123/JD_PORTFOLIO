@@ -1,95 +1,111 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Code, Cpu, Cloud, PenTool, Monitor, Wrench } from "lucide-react";
+﻿import { useRef } from "react";
+import { motion } from "framer-motion";
+import { Cpu, Terminal, Layers, Database } from "lucide-react";
 
-const skillCategories = [
-  {
-    icon: Code,
-    title: "Programming",
-    skills: ["Python", "C", "C++ (Basics)", "Embedded C"],
-  },
+// Monochrome Tool Bubbles matching ID Card palette (charcoal, slate, silver, pure white)
+const tools = [
+  { id: "esp32", name: "ESP32", bg: "#1a1a20", border: "#ffffff", color: "#ffffff", size: "w-24 h-24 sm:w-28 sm:h-28", initial: { x: -280, y: 30 } },
+  { id: "arduino", name: "Arduino", bg: "#141418", border: "#a1a1aa", color: "#e4e4e7", size: "w-20 h-20 sm:w-24 sm:h-24", initial: { x: -160, y: 70 } },
+  { id: "python", name: "Python", bg: "#1f1f26", border: "#ffffff", color: "#ffffff", size: "w-24 h-24 sm:w-30 sm:h-30", initial: { x: -40, y: 0 } },
+  { id: "cpp", name: "C / C++", bg: "#16161c", border: "#a1a1aa", color: "#e4e4e7", size: "w-20 h-20 sm:w-24 sm:h-24", initial: { x: 80, y: 50 } },
+  { id: "embeddedc", name: "Embedded C", bg: "#1c1c24", border: "#d4d4d8", color: "#ffffff", size: "w-22 h-22 sm:w-26 sm:h-26", initial: { x: 200, y: 10 } },
+  { id: "proteus", name: "Proteus", bg: "#14141a", border: "#71717a", color: "#d4d4d8", size: "w-20 h-20 sm:w-24 sm:h-24", initial: { x: 310, y: 60 } },
+  { id: "kali", name: "Kali Linux", bg: "#181820", border: "#a1a1aa", color: "#e4e4e7", size: "w-20 h-20 sm:w-24 sm:h-24", initial: { x: -220, y: -40 } },
+  { id: "firebase", name: "Firebase", bg: "#16161d", border: "#d4d4d8", color: "#ffffff", size: "w-22 h-22 sm:w-26 sm:h-26", initial: { x: -100, y: -60 } },
+  { id: "aws", name: "AWS Cloud", bg: "#1a1a22", border: "#a1a1aa", color: "#e4e4e7", size: "w-20 h-20 sm:w-24 sm:h-24", initial: { x: 40, y: -50 } },
+  { id: "react", name: "React", bg: "#1e1e28", border: "#ffffff", color: "#ffffff", size: "w-22 h-22 sm:w-28 sm:h-28", initial: { x: 160, y: -60 } },
+  { id: "typescript", name: "TypeScript", bg: "#15151c", border: "#a1a1aa", color: "#e4e4e7", size: "w-20 h-20 sm:w-24 sm:h-24", initial: { x: 280, y: -30 } },
+  { id: "git", name: "Git & GitHub", bg: "#181820", border: "#71717a", color: "#d4d4d8", size: "w-20 h-20 sm:w-24 sm:h-24", initial: { x: -30, y: 90 } },
+];
+
+const skillDomains = [
   {
     icon: Cpu,
     title: "Embedded & IoT",
-    skills: ["Arduino IDE", "Blynk", "Firebase IoT", "ESP8266/ESP32"],
+    skills: "ESP32, SoftAP, Arduino, MAX30102, NDT Probes, I2C/SPI",
   },
   {
-    icon: Cloud,
-    title: "Cloud & Backend",
-    skills: ["AWS", "Firebase", "Real-time Databases"],
+    icon: Layers,
+    title: "Hardware & CAD",
+    skills: "Proteus Simulation, Tinkercad, LabVIEW, PCB Layout, VLSI RTL",
   },
   {
-    icon: PenTool,
-    title: "Design & Simulation",
-    skills: ["Tinkercad", "Circuit Designer", "LabVIEW", "PCB Design", "Proteus"],
+    icon: Terminal,
+    title: "Languages & ML",
+    skills: "Embedded C, C++, Python, Random Forest, TypeScript, React",
   },
   {
-    icon: Monitor,
-    title: "Operating Systems",
-    skills: ["Kali Linux", "Ubuntu", "Windows"],
-  },
-  {
-    icon: Wrench,
-    title: "Other Skills",
-    skills: [
-      "Circuit Analysis",
-      "Signal Processing",
-      "VLSI Basics",
-      "Technical Documentation",
-    ],
+    icon: Database,
+    title: "Cloud & Protocols",
+    skills: "REST JSON APIs, SoftAP Mesh, Firebase, AWS, WebSockets",
   },
 ];
 
 export const Skills = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const constraintsRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="skills" className="py-24 bg-card/50 relative">
-      <div className="container mx-auto px-6">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            Technical <span className="text-gradient-gold">Skills</span>
+    <section id="tools" className="py-20 relative bg-[#08080a] border-t border-white/10 overflow-hidden id-grid-bg">
+      <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-10">
+          <div className="text-neutral-400 font-tech text-xs font-bold tracking-widest uppercase mb-1">
+            CLICK &amp; DRAG
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-display font-black text-white tracking-tight">
+            My tools to play around with and create magic!
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A diverse toolkit spanning embedded systems, software development,
-            and cloud technologies
+          <p className="text-neutral-500 font-tech text-xs mt-1.5 uppercase tracking-wider">
+            Grab, fling, and bounce the tool spheres
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, index) => (
+        {/* Unified Monochrome Interactive Physics Playground */}
+        <div
+          ref={constraintsRef}
+          className="w-full h-[400px] sm:h-[440px] rounded-3xl bg-[#101015] border border-white/10 shadow-2xl relative overflow-hidden flex items-center justify-center mb-12 select-none"
+        >
+          {tools.map((tool) => (
             <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-              className="glass-dark rounded-2xl p-6 hover:border-primary/50 transition-all duration-300"
+              key={tool.id}
+              drag
+              dragConstraints={constraintsRef}
+              dragElastic={0.2}
+              dragTransition={{ bounceStiffness: 500, bounceDamping: 15 }}
+              whileHover={{ scale: 1.15, cursor: "grab", zIndex: 30 }}
+              whileDrag={{ scale: 1.25, cursor: "grabbing", zIndex: 50 }}
+              initial={{ x: tool.initial.x, y: tool.initial.y }}
+              style={{
+                backgroundColor: tool.bg,
+                borderColor: tool.border,
+                color: tool.color,
+              }}
+              className={`absolute rounded-full ${tool.size} flex flex-col items-center justify-center text-center p-3 shadow-xl font-tech font-bold text-xs sm:text-sm border transition-shadow`}
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-3 rounded-xl bg-primary/10">
-                  <category.icon className="w-5 h-5 text-primary" />
-                </div>
-                <h3 className="font-display font-semibold">{category.title}</h3>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1.5 text-sm rounded-lg bg-secondary text-secondary-foreground"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
+              <span className="leading-tight pointer-events-none">
+                {tool.name}
+              </span>
             </motion.div>
+          ))}
+        </div>
+
+        {/* Concise 4-Column Domain Strip */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {skillDomains.map((domain) => (
+            <div
+              key={domain.title}
+              className="p-5 rounded-2xl bg-[#121216] border border-white/10"
+            >
+              <div className="w-8 h-8 rounded-lg bg-white/5 text-white flex items-center justify-center mb-3">
+                <domain.icon className="w-4 h-4" />
+              </div>
+              <h4 className="font-display font-bold text-sm text-white mb-1">
+                {domain.title}
+              </h4>
+              <p className="text-xs text-neutral-400 font-tech leading-relaxed">
+                {domain.skills}
+              </p>
+            </div>
           ))}
         </div>
       </div>

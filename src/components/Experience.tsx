@@ -1,144 +1,86 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Briefcase, GraduationCap } from "lucide-react";
+﻿import { motion } from "framer-motion";
 
-const workExperience = [
+const experiences = [
   {
-    period: "September 2025 – Present",
-    title: "VLSI Chip Intern",
-    company: "Onesys Infotech Solutions – Chennai",
-    points: [
-      "Gaining hands-on exposure to semiconductor and VLSI design workflows",
-      "Working on embedded systems integration for industry-grade applications",
-      "Collaborating on industry-oriented problem solving and chip design methodologies",
-      "Learning advanced fabrication processes and design verification techniques",
-    ],
-  },
-];
-
-const education = [
-  {
-    period: "2023 – 2027",
-    title: "B.E – Electronics and Communication Engineering",
-    institution: "Velammal Institute of Technology",
-    description:
-      "Pursuing core ECE curriculum with specialization in IoT and Embedded Systems",
+    role: "VLSI Chip Intern",
+    org: "Onesys Infotech Solutions",
+    period: "Sep 2025 — Present",
+    location: "Chennai, India",
+    type: "Work",
+    desc: "Digital logic synthesis, embedded testbench integration, timing closure, and semiconductor RTL workflows.",
+    tags: ["VLSI Design", "Embedded C", "RTL Verification"],
   },
   {
-    period: "2022 – 2023",
-    title: "Higher Secondary (1st Group)",
-    institution: "St. Mary's HR Sec School, Perambur",
-    description:
-      "Completed higher secondary education with focus on Science and Mathematics",
+    role: "B.E. Electronics & Communication",
+    org: "Velammal Institute of Technology",
+    period: "2023 — 2027",
+    location: "Chennai, India",
+    type: "Education",
+    desc: "Specializing in IoT architecture, embedded microcontrollers, signal processing, and lead 16x hackathon team.",
+    tags: ["IoT Systems", "Microcontrollers", "DSP"],
+  },
+  {
+    role: "Higher Secondary (1st Group - Science)",
+    org: "St. Mary's HR Sec School",
+    period: "2022 — 2023",
+    location: "Chennai, India",
+    type: "Education",
+    desc: "Mathematics, Physics, Chemistry, Computer Science with distinction.",
+    tags: ["Advanced Math", "Physics", "CS"],
   },
 ];
 
 export const Experience = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="experience" className="py-24 bg-card/50 relative">
-      <div className="container mx-auto px-6">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            Experience & <span className="text-gradient-gold">Education</span>
+    <section id="experience" className="py-20 relative bg-[#08080a] border-t border-white/10">
+      <div className="container mx-auto px-6 md:px-12 max-w-6xl">
+        <div className="mb-12">
+          <span className="text-neutral-400 font-tech text-xs font-bold uppercase tracking-widest block mb-1">
+            CAREER &amp; EDUCATION
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-display font-black text-white uppercase tracking-tight">
+            TIMELINE
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            My professional journey and academic background
-          </p>
-        </motion.div>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Work Experience */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 rounded-xl bg-primary/10">
-                <Briefcase className="w-6 h-6 text-primary" />
+        <div className="grid md:grid-cols-3 gap-5">
+          {experiences.map((exp, i) => (
+            <motion.div
+              key={exp.role}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="p-6 rounded-2xl bg-[#121216] border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between text-[11px] font-tech text-neutral-400 mb-3">
+                  <span className="text-white font-bold">{exp.period}</span>
+                  <span>{exp.location}</span>
+                </div>
+                <h3 className="font-display font-bold text-base text-white mb-1">
+                  {exp.role}
+                </h3>
+                <p className="text-xs font-semibold text-neutral-300 font-tech mb-3">
+                  {exp.org}
+                </p>
+                <p className="text-xs text-neutral-400 leading-relaxed mb-4">
+                  {exp.desc}
+                </p>
               </div>
-              <h3 className="text-2xl font-display font-semibold">
-                Work Experience
-              </h3>
-            </div>
 
-            <div className="space-y-6">
-              {workExperience.map((exp, index) => (
-                <motion.div
-                  key={exp.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="glass-dark rounded-2xl p-6 border-l-4 border-primary"
-                >
-                  <span className="text-sm text-primary font-medium">
-                    {exp.period}
+              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+                {exp.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="px-2 py-0.5 text-[10px] font-tech rounded bg-white/5 text-neutral-300 border border-white/10"
+                  >
+                    {t}
                   </span>
-                  <h4 className="text-xl font-semibold mt-2 mb-1">
-                    {exp.title}
-                  </h4>
-                  <p className="text-muted-foreground mb-4">{exp.company}</p>
-                  <ul className="space-y-2">
-                    {exp.points.map((point, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-2 text-sm text-muted-foreground"
-                      >
-                        <span className="text-primary mt-1">▸</span>
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Education */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 rounded-xl bg-primary/10">
-                <GraduationCap className="w-6 h-6 text-primary" />
+                ))}
               </div>
-              <h3 className="text-2xl font-display font-semibold">Education</h3>
-            </div>
-
-            <div className="space-y-6">
-              {education.map((edu, index) => (
-                <motion.div
-                  key={edu.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                  className="glass-dark rounded-2xl p-6 border-l-4 border-accent"
-                >
-                  <span className="text-sm text-accent font-medium">
-                    {edu.period}
-                  </span>
-                  <h4 className="text-xl font-semibold mt-2 mb-1">
-                    {edu.title}
-                  </h4>
-                  <p className="text-muted-foreground mb-2">{edu.institution}</p>
-                  <p className="text-sm text-muted-foreground">
-                    {edu.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

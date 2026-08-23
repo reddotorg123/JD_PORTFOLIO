@@ -1,111 +1,90 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { GraduationCap, Calendar, MapPin, Languages } from "lucide-react";
+﻿import { motion } from "framer-motion";
+import { Cpu, Bot, Trophy, MapPin, GraduationCap, Languages } from "lucide-react";
 
-const infoCards = [
+const quickPillars = [
   {
-    icon: GraduationCap,
-    title: "B.E – Electronics & Communication",
-    subtitle: "Velammal Institute of Technology",
+    icon: Cpu,
+    title: "Offline IoT & Edge Systems",
+    desc: "Zero-dependency local SoftAP servers, telemetry & deterministic alert loops.",
   },
   {
-    icon: Calendar,
-    title: "Class of 2027",
-    subtitle: "Expected Graduation",
+    icon: Bot,
+    title: "Robotics & Signal Processing",
+    desc: "Pulse-Echo ultrasonic NDT crawlers, ToF crack detection & embedded drivers.",
   },
   {
-    icon: MapPin,
-    title: "Chennai, India",
-    subtitle: "Location",
-  },
-  {
-    icon: Languages,
-    title: "Languages",
-    subtitle: "English • Tamil • Telugu",
+    icon: Trophy,
+    title: "Hackathon Champion & Founder",
+    desc: "16+ national & state-level victories; founder at REDDOT engineering suite.",
   },
 ];
 
+const fastFacts = [
+  { icon: GraduationCap, label: "Education", value: "B.E. ECE — Velammal (2027)" },
+  { icon: MapPin, label: "Location", value: "Chennai, Tamil Nadu, India" },
+  { icon: Languages, label: "Languages", value: "English • Tamil • Telugu" },
+];
+
 export const About = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="about" className="py-24 relative">
-      <div className="container mx-auto px-6">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            About <span className="text-gradient-gold">Me</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A passionate engineer on a mission to bridge the gap between
-            hardware innovation and software intelligence.
+    <section id="about" className="py-20 relative bg-[#08080a] border-t border-white/10">
+      <div className="container mx-auto px-6 md:px-12 max-w-6xl">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div>
+            <span className="text-neutral-400 font-tech text-xs font-bold uppercase tracking-widest block mb-1">
+              TECHNICAL HEAD &amp; FOUNDER
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-display font-black text-white uppercase tracking-tight">
+              JAGADISH K
+            </h2>
+          </div>
+          <p className="text-neutral-400 text-sm font-tech max-w-md">
+            Electronics &amp; Communication Engineer specializing in offline-first IoT architectures, robotics NDT, and autonomous platforms.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* About Text */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
-          >
-            <div className="glass-dark rounded-2xl p-8 relative overflow-hidden group">
-              <h3 className="text-xl font-display font-semibold text-primary mb-4 relative z-10">
-                Professional Summary
+        {/* 3 Core Pillars */}
+        <div className="grid md:grid-cols-3 gap-5 mb-10">
+          {quickPillars.map((p, i) => (
+            <motion.div
+              key={p.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="p-6 rounded-2xl bg-[#121216] border border-white/10 hover:border-white/30 transition-all group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-white/5 text-white flex items-center justify-center mb-4 group-hover:bg-white group-hover:text-black transition-all">
+                <p.icon className="w-5 h-5" />
+              </div>
+              <h3 className="font-display font-bold text-lg text-white mb-1.5">
+                {p.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed mb-4 relative z-10">
-                I'm a driven Electronics & Communication Engineering student
-                with a strong foundation in IoT, Embedded Systems, and VLSI
-                design. My expertise lies in bridging hardware intelligence with
-                modern software solutions to create innovative, real-world
-                applications.
+              <p className="text-xs text-neutral-400 leading-relaxed font-sans">
+                {p.desc}
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-4 relative z-10">
-                With multiple hackathon wins under my belt and hands-on industry
-                experience, I've demonstrated my ability to conceptualize,
-                design, and deliver impactful projects in healthcare technology,
-                environmental monitoring, and telecommunications.
-              </p>
-              <p className="text-muted-foreground leading-relaxed relative z-10">
-                I'm passionate about leveraging technology for sustainability
-                and healthcare innovation, constantly seeking opportunities to
-                apply my skills to solve pressing global challenges through
-                creative engineering solutions.
-              </p>
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
+        </div>
 
-          {/* Info Cards */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid sm:grid-cols-2 gap-4"
-          >
-            {infoCards.map((card, index) => (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                className="glass-dark rounded-xl p-6 hover:border-primary/50 transition-colors duration-300"
-              >
-                <card.icon className="w-8 h-8 text-primary mb-4" />
-                <h4 className="font-semibold text-foreground mb-1">
-                  {card.title}
-                </h4>
-                <p className="text-sm text-muted-foreground">{card.subtitle}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+        {/* Quick Facts Strip */}
+        <div className="grid sm:grid-cols-3 gap-4 p-5 rounded-2xl bg-[#0e0e12] border border-white/5 text-xs font-tech">
+          {fastFacts.map((fact) => (
+            <div key={fact.label} className="flex items-center gap-3">
+              <div className="p-2 rounded-lg bg-white/5 text-white">
+                <fact.icon className="w-4 h-4" />
+              </div>
+              <div>
+                <span className="text-neutral-500 block uppercase text-[10px]">
+                  {fact.label}
+                </span>
+                <span className="text-white font-semibold">
+                  {fact.value}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

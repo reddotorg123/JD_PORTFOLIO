@@ -1,17 +1,7 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Hexagon } from "lucide-react";
 import { Button } from "./ui/button";
-
-const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Products", href: "#products" },
-  { label: "Skills", href: "#skills" },
-  { label: "Achievements", href: "#achievements" },
-  { label: "Contact", href: "#contact" },
-];
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,7 +9,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 30);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -27,64 +17,119 @@ export const Navbar = () => {
 
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
+      initial={{ y: -60, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass-dark py-4" : "py-8"
+        isScrolled
+          ? "bg-[#08080a]/95 backdrop-blur-xl border-b border-white/10 py-3.5 shadow-2xl shadow-black"
+          : "bg-transparent py-5"
       }`}
     >
-      <nav className="container mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="text-3xl font-display font-black text-primary tracking-tighter">
-          JK
+      <nav className="container mx-auto px-6 md:px-12 flex items-center justify-between">
+        {/* Personal Brand Logo Box (No REDDOT in Header) */}
+        <a href="#" className="flex items-center gap-3 group">
+          <div className="w-8 h-8 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-all">
+            <Hexagon className="w-4 h-4 fill-current" />
+          </div>
+          <div className="flex flex-col">
+            <span className="font-display font-black text-sm tracking-wider text-white uppercase leading-none">
+              JAGADISH.K
+            </span>
+            <span className="text-[9px] font-tech text-neutral-400 tracking-widest uppercase">
+              PORTFOLIO
+            </span>
+          </div>
         </a>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <li key={item.label}>
-              <a
-                href={item.href}
-                className="text-base font-bold text-foreground/80 hover:text-primary transition-colors duration-300 uppercase tracking-widest"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-neutral-400">
+          <a href="#about" className="hover:text-white transition-colors">
+            About
+          </a>
+          <a href="#projects" className="hover:text-white transition-colors">
+            Projects
+          </a>
+          <a href="#products" className="hover:text-white transition-colors">
+            Products
+          </a>
+          <a href="#tools" className="hover:text-white transition-colors">
+            Tools
+          </a>
+          <a href="#achievements" className="hover:text-white transition-colors">
+            Moments
+          </a>
+          <a
+            href="/Jagadish_K_Resume_2026.pdf"
+            download="Jagadish_K_Resume_2026.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors"
+          >
+            Resume
+          </a>
+
+          {/* Contact Pill */}
+          <a
+            href="#contact"
+            className="px-6 py-2 rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider transition-all hover:bg-neutral-200 hover:scale-105"
+          >
+            CONTACT
+          </a>
+        </div>
 
         {/* Mobile Menu Button */}
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="md:hidden text-white hover:bg-white/10"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X /> : <Menu />}
+          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </Button>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Drawer */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: -15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="absolute top-full left-0 right-0 glass-dark md:hidden"
+              exit={{ opacity: 0, y: -15 }}
+              className="absolute top-full left-0 right-0 bg-[#0c0c10]/98 backdrop-blur-2xl border-b border-white/10 md:hidden p-6 shadow-2xl"
             >
-              <ul className="flex flex-col p-6 gap-4">
-                {navItems.map((item) => (
-                  <li key={item.label}>
-                    <a
-                      href={item.href}
-                      className="text-foreground/80 hover:text-primary transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex flex-col gap-4 text-sm font-semibold uppercase tracking-wider">
+                <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">
+                  About
+                </a>
+                <a href="#projects" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">
+                  Projects
+                </a>
+                <a href="#products" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">
+                  Products
+                </a>
+                <a href="#tools" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">
+                  Tools
+                </a>
+                <a href="#achievements" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">
+                  Moments
+                </a>
+                <a
+                  href="/Jagadish_K_Resume_2026.pdf"
+                  download="Jagadish_K_Resume_2026.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-300 hover:text-white"
+                >
+                  Resume
+                </a>
+                <a
+                  href="#contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-full py-3 rounded-full bg-white text-black text-center font-bold text-xs uppercase tracking-wider mt-2"
+                >
+                  CONTACT
+                </a>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
