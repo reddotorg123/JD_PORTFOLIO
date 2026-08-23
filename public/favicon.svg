@@ -1,0 +1,31 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14141c" />
+      <stop offset="100%" stop-color="#08080a" />
+    </linearGradient>
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#3f3f46" stop-opacity="0.3" />
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#a1a1aa" />
+    </linearGradient>
+  </defs>
+
+  <!-- Squircle Base -->
+  <rect x="16" y="16" width="480" height="480" rx="110" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="12" />
+
+  <!-- Outer Technical Hexagon Ring -->
+  <polygon points="256,70 410,158 410,336 256,424 102,336 102,158" fill="none" stroke="url(#silverGrad)" stroke-width="14" stroke-linejoin="round" />
+
+  <!-- Inner Solid Hexagon Accent -->
+  <polygon points="256,120 366,183 366,311 256,374 146,311 146,183" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.2" stroke-width="4" stroke-linejoin="round" />
+
+  <!-- JK Typography Monogram -->
+  <text x="256" y="295" font-family="'Outfit', 'Space Grotesk', -apple-system, sans-serif" font-size="160" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="-4">JK</text>
+
+  <!-- Status Dot -->
+  <circle cx="256" cy="345" r="8" fill="#ffffff" />
+</svg>
