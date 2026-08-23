@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 
 interface Trace {
   x: number;
@@ -38,14 +38,14 @@ export const HardwareBackground = () => {
 
     const createTraces = () => {
       tracesRef.current = [];
-      const traceCount = 40;
+      const traceCount = 35;
       for (let i = 0; i < traceCount; i++) {
         tracesRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           length: Math.random() * 100 + 50,
-          speed: Math.random() * 2 + 1,
-          opacity: Math.random() * 0.3 + 0.1,
+          speed: Math.random() * 1.5 + 0.8,
+          opacity: Math.random() * 0.15 + 0.05,
           horizontal: Math.random() > 0.5,
         });
       }
@@ -53,21 +53,21 @@ export const HardwareBackground = () => {
 
     const createBits = () => {
       bitsRef.current = [];
-      const bitCount = 100;
+      const bitCount = 60;
       for (let i = 0; i < bitCount; i++) {
         bitsRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           char: Math.random() > 0.5 ? "0" : "1",
-          size: Math.random() * 10 + 8,
-          speed: Math.random() * 0.5 + 0.2,
-          opacity: Math.random() * 0.2 + 0.1,
+          size: Math.random() * 8 + 7,
+          speed: Math.random() * 0.4 + 0.2,
+          opacity: Math.random() * 0.15 + 0.05,
         });
       }
     };
 
     const drawGrid = () => {
-      ctx.strokeStyle = "rgba(184, 134, 11, 0.05)";
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.02)";
       ctx.lineWidth = 1;
       const step = 50;
 
@@ -92,11 +92,11 @@ export const HardwareBackground = () => {
         : ctx.createLinearGradient(trace.x, trace.y, trace.x, trace.y + trace.length);
 
       gradient.addColorStop(0, "transparent");
-      gradient.addColorStop(0.5, `rgba(184, 134, 11, ${trace.opacity})`);
+      gradient.addColorStop(0.5, `rgba(255, 255, 255, ${trace.opacity})`);
       gradient.addColorStop(1, "transparent");
 
       ctx.strokeStyle = gradient;
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(trace.x, trace.y);
       if (trace.horizontal) {
@@ -109,7 +109,7 @@ export const HardwareBackground = () => {
 
     const drawBit = (bit: Bit) => {
       ctx.font = `${bit.size}px monospace`;
-      ctx.fillStyle = `rgba(184, 134, 11, ${bit.opacity})`;
+      ctx.fillStyle = `rgba(255, 255, 255, ${bit.opacity})`;
       ctx.fillText(bit.char, bit.x, bit.y);
     };
 
@@ -122,16 +122,16 @@ export const HardwareBackground = () => {
       
       drawGrid();
 
-      // Mouse Glow
+      // Subtle mouse light
       const mouseGradient = ctx.createRadialGradient(
         mouseRef.current.x,
         mouseRef.current.y,
         0,
         mouseRef.current.x,
         mouseRef.current.y,
-        300
+        250
       );
-      mouseGradient.addColorStop(0, "rgba(184, 134, 11, 0.05)");
+      mouseGradient.addColorStop(0, "rgba(255, 255, 255, 0.03)");
       mouseGradient.addColorStop(1, "transparent");
       ctx.fillStyle = mouseGradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -150,18 +150,6 @@ export const HardwareBackground = () => {
       bitsRef.current.forEach((bit) => {
         bit.y += bit.speed;
         if (bit.y > canvas.height) bit.y = -20;
-        
-        // Interaction
-        const dx = bit.x - mouseRef.current.x;
-        const dy = bit.y - mouseRef.current.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 100) {
-          bit.opacity = 0.8;
-          bit.char = Math.random() > 0.9 ? "@" : Math.random() > 0.5 ? "1" : "0";
-        } else {
-          bit.opacity = Math.max(0.1, bit.opacity - 0.01);
-        }
-
         drawBit(bit);
       });
 
@@ -190,7 +178,7 @@ export const HardwareBackground = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ background: "#050505" }}
+      style={{ background: "#08080a" }}
     />
   );
 };
