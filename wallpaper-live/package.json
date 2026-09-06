@@ -1,0 +1,65 @@
+{
+  "name": "reddot-workstation-desktop",
+  "version": "2.4.0",
+  "description": "REDDOT Architecture & Executive Workstation OS with AES-256 Encrypted Private Database",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "server": "node server/server.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win",
+    "dist:portable": "electron-builder --win portable"
+  },
+  "build": {
+    "appId": "com.reddot.workstation",
+    "productName": "REDDOT Workstation OS",
+    "copyright": "Copyright © 2026 Jagadish K - REDDOT Architecture",
+    "electronVersion": "34.0.0",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "wallpaper-ui/**/*",
+      "server/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "REDDOT Workstation OS"
+    }
+  },
+  "keywords": [
+    "desktop-wallpaper",
+    "windows-workstation",
+    "admin-panel",
+    "timesheets",
+    "private-database",
+    "jagadish-k"
+  ],
+  "author": "Jagadish K <founder@reddot.internal>",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "34.0.0",
+    "electron-builder": "^25.1.8"
+  }
+}

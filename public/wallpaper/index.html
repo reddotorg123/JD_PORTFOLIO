@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAGADISH.K &bull; REDDOT Architecture &amp; Executive Workstation</title>
+  <meta name="description" content="Official REDDOT Architecture Wallpaper Desktop App with Enterprise Admin Command Center, Worker ID Generator, Timesheets, Group Chat, Voice/Video Calling, and Private Secure Database.">
+  <meta name="author" content="Jagadish K">
+
+  <!-- Google Fonts: Space Grotesk, Outfit, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-obsidian mode-wallpaper">
+  <!-- Subtle Architectural Grid Background -->
+  <div class="grid-backdrop"></div>
+  <div class="vignette-overlay"></div>
+
+  <!-- =========================================================================
+       MAIN WORKSTATION VIEWPORT (PIXEL-PERFECT LIVE WALLPAPER)
+       ========================================================================= -->
+  <div id="wallpaperRoot" class="wp-root">
+
+    <!-- Top Minimalist Bar: Pure, Clean Branding Matching Reference Image -->
+    <header class="top-bar">
+      <!-- Top Left Brand Badge (Click opens Admin Command Center) -->
+      <div class="brand-block" id="btnBrandHome" title="Open Admin Command Center (Key: Space)">
+        <div class="brand-icon-box">
+          <span class="brand-hex">&#x2B22;</span>
+        </div>
+        <div class="brand-meta">
+          <span class="brand-name" id="topBrandName">JAGADISH.K</span>
+          <span class="brand-sub">PORTFOLIO</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Center Stage: Symmetrical Alignment of Left Tag, Giant Centerpiece & Right Tag -->
+    <main class="center-stage" id="centerStage">
+      <!-- Left Side Tag -->
+      <div class="side-tag left-tag">
+        <span class="tag-bold" id="leftTagRole">(TECHNICAL HEAD)</span>
+        <span class="tag-muted" id="leftTagSub">FOUNDER &amp; ARCHITECT</span>
+      </div>
+
+      <!-- Giant Bold Centerpiece Typography (Exact Reference Font & Weight) -->
+      <div class="giant-name-backdrop pointer-events-none">
+        <h1 class="giant-name" id="giantNameText">JAGADISH</h1>
+      </div>
+
+      <!-- 3D Interactive Floating Lanyard Card Overlapping Centerpiece -->
+      <div id="lanyardContainer" class="lanyard-wrapper">
+        <div id="lanyardCard" class="lanyard-card">
+          <!-- Hanging Lanyard Neck Ribbon reaching top of screen -->
+          <div class="lanyard-ribbon">
+            <div class="ribbon-line"></div>
+            <div class="metallic-clip">
+              <div class="clip-slot"></div>
+            </div>
+          </div>
+
+          <!-- Physical Badge Case Holder with Exact ID Card Artwork -->
+          <div class="card-frame" id="cardBadgeTrigger" title="Click to view Official Digital Badge or press Space for Admin Hub">
+            <div class="card-glass-sheen"></div>
+            <div class="card-image-box">
+              <img id="badgeImg" src="assets/id-card.png" alt="REDDOT Identification Badge" class="card-image" loading="eager">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side Tag -->
+      <div class="side-tag right-tag">
+        <span class="tag-bold" id="rightTagRole">HARDWARE ARCHITECT &amp;</span>
+        <span class="tag-muted" id="rightTagSub">EMBEDDED SYSTEMS</span>
+      </div>
+    </main>
+
+    <!-- Bottom Bar: Minimalist Watermark & Subtle Reveal Dock -->
+    <footer class="bottom-bar">
+      <div class="bottom-left">
+        <!-- Floating Command Center Trigger (Subtle hover reveal) -->
+        <button id="btnOpenCommandCenter" class="stealth-dock-btn" title="Open Enterprise Admin Command Center (Key: Space)">
+          <span class="btn-icon">&#x29E2;</span>
+          <span class="btn-text">ADMIN COMMAND CENTER</span>
+          <span class="hotkey-pill">SPACE</span>
+        </button>
+      </div>
+
+      <!-- Bottom Right: Exact Reference Watermark Tag -->
+      <div class="bottom-right">
+        <div class="watermark-tag">
+          <span class="watermark-sub">TECHNICAL HEAD &amp; FOUNDER</span>
+          <span class="watermark-bold" id="bottomBrandTag">JAGADISH.K &bull; 2026</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- =========================================================================
+       ENTERPRISE ADMIN & WORKSTATION COMMAND CENTER (ULTRA-CLEAN SUITE)
+       ========================================================================= -->
+  <div id="commandCenterDrawer" class="command-center-overlay collapsed">
+    <div class="command-center-shell">
+      
+      <!-- Drawer Header Bar -->
+      <header class="command-header">
+        <div class="header-left">
+          <div class="cmd-brand-icon">&#x25C6;</div>
+          <div class="cmd-title-meta">
+            <h2 class="cmd-title" id="cmdTitle">REDDOT WORKSTATION OS</h2>
+            <p class="cmd-subtitle" id="cmdSubtitle">Enterprise Workforce Command &bull; Secure Encrypted Operations</p>
+          </div>
+          <div class="session-status-badge" id="btnSessionSwitch" title="Switch User Session / Login (Key: L)">
+            <span class="role-indicator-dot" id="roleDot"></span>
+            <span class="role-label" id="roleLabel">ADMIN // JAGADISH K</span>
+            <span class="session-emp-id" id="sessionEmpId">FOUNDER</span>
+          </div>
+          <span class="db-secure-badge" id="cmdDbBadge" title="Private Database Encrypted with AES-256-GCM">&#x1F512; AES-256 SECURE</span>
+        </div>
+
+        <!-- Segmented Tab Navigation Controller -->
+        <nav class="cmd-tab-nav" id="cmdTabNav">
+          <button class="cmd-tab-btn active" data-target="tabWorkersView" id="tabBtnWorkers">
+            <span class="tab-icon">&#x1F465;</span>
+            <span>Team &amp; IDs</span>
+          </button>
+          <button class="cmd-tab-btn" data-target="tabTimesheetsView" id="tabBtnTimesheets">
+            <span class="tab-icon">&#x23F1;</span>
+            <span>Time &amp; Shifts</span>
+          </button>
+          <button class="cmd-tab-btn" data-target="tabTasksView" id="tabBtnTasks">
+            <span class="tab-icon">&#x1F4CB;</span>
+            <span>Tasks &amp; Goals</span>
+          </button>
+          <button class="cmd-tab-btn" data-target="tabChatView" id="tabBtnChat">
+            <span class="tab-icon">&#x1F4AC;</span>
+            <span>Private Chat</span>
+          </button>
+          <button class="cmd-tab-btn" data-target="tabCallsView" id="tabBtnCalls">
+            <span class="tab-icon">&#x1F4DE;</span>
+            <span>Calling Hub</span>
+          </button>
+          <button class="cmd-tab-btn" data-target="tabDatabaseView" id="tabBtnDatabase">
+            <span class="tab-icon">&#x1F512;</span>
+            <span>Security &amp; DB</span>
+          </button>
+        </nav>
+
+        <!-- Window Controls & Dismiss -->
+        <div class="header-right">
+          <button id="btnToggleWallpaperMode" class="btn-outline-action" title="Return to Clean Live Wallpaper (Esc)">
+            <span>&#x29E2; Wallpaper Mode [Esc]</span>
+          </button>
+          <button id="btnCloseCommandCenter" class="drawer-close-btn" title="Close (Esc)">&times;</button>
+        </div>
+      </header>
+
+      <!-- Main Tab Content Area -->
+      <main class="command-body">
+
+        <!-- TAB 1: WORKERS & IDS -->
+        <section id="tabWorkersView" class="cmd-tab-pane active">
+          <div class="pane-action-bar">
+            <div class="stats-counter-group">
+              <div class="stat-pill">
+                <span class="stat-num" id="statTotalWorkers">4</span>
+                <span class="stat-label">Total Team</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-num text-success" id="statActiveWorkers">2</span>
+                <span class="stat-label">On Duty</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-num text-warning" id="statBreakWorkers">1</span>
+                <span class="stat-label">On Break</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-num text-muted" id="statOfflineWorkers">1</span>
+                <span class="stat-label">Offline</span>
+              </div>
+            </div>
+
+            <div class="pane-right-actions">
+              <div class="search-input-box">
+                <span class="search-icon">&#x1F50D;</span>
+                <input type="text" id="inputWorkerSearch" placeholder="Search team member, ID, role..." class="custom-search-input">
+              </div>
+              <button id="btnOpenCreateWorkerModal" class="btn-primary-action">
+                <span>+ Create Worker ID</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="workers-grid-container" id="workersGrid">
+            <!-- Dynamically Rendered Clean Worker Cards -->
+          </div>
+        </section>
+
+        <!-- TAB 2: TIMESHEETS & SHIFTS -->
+        <section id="tabTimesheetsView" class="cmd-tab-pane">
+          <!-- Tactile Apple Watch / Linear Style Shift Punch Bar -->
+          <div class="shift-clock-panel">
+            <div class="shift-user-info">
+              <div class="shift-avatar" id="shiftUserAvatar">JK</div>
+              <div class="shift-meta">
+                <span class="shift-name" id="shiftUserName">Jagadish K (Admin)</span>
+                <span class="shift-id" id="shiftUserId">FOUNDER // TECHNICAL HEAD</span>
+              </div>
+            </div>
+
+            <div class="shift-clock-actions">
+              <div class="shift-timer-display">
+                <span class="timer-label">CURRENT ACTIVE SHIFT</span>
+                <span class="timer-digits" id="shiftLiveTimer">00:00:00</span>
+              </div>
+              <button id="btnClockIn" class="btn-shift-action btn-clockin">
+                <span>&#x25B6; CLOCK IN</span>
+              </button>
+              <button id="btnToggleBreak" class="btn-shift-action btn-break" disabled>
+                <span>&#x23F8; TAKE BREAK</span>
+              </button>
+              <button id="btnClockOut" class="btn-shift-action btn-clockout" disabled>
+                <span>&#x23F9; CLOCK OUT</span>
+              </button>
+            </div>
+
+            <div class="shift-today-target">
+              <div class="target-head">
+                <span>Today's Logged Hours</span>
+                <span id="shiftTodayHours">5.8 hrs / 8.0 hrs</span>
+              </div>
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="shiftTargetProgress" style="width: 72%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timesheets-section-head">
+            <div class="section-title-group">
+              <h3 class="section-title">WORKFORCE ATTENDANCE &amp; HOURS ROSTER</h3>
+              <p class="section-sub">Live monitoring of shift punch logs, active working hours, and automated timesheet receipts.</p>
+            </div>
+            <div class="timesheet-export-group">
+              <button id="btnExportTimesheetsCSV" class="btn-secondary-action" title="Export Timesheets to CSV">
+                <span>&#x1F4BE; Export CSV</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-card">
+            <table class="data-table" id="timesheetTable">
+              <thead>
+                <tr>
+                  <th>WORKER ID &amp; NAME</th>
+                  <th>DEPARTMENT</th>
+                  <th>STATUS</th>
+                  <th>CLOCK IN TIME</th>
+                  <th>SHIFT DURATION</th>
+                  <th>TODAY'S HOURS</th>
+                  <th>WEEKLY HOURS</th>
+                  <th>ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody id="timesheetTableBody"></tbody>
+            </table>
+          </div>
+
+          <div class="punch-history-panel">
+            <div class="panel-head">
+              <span>&#x1F4DD; RECENT SHIFT PUNCH LOGS</span>
+            </div>
+            <div class="punch-log-list" id="punchLogsList"></div>
+          </div>
+        </section>
+
+        <!-- TAB 3: TASKS & GOALS -->
+        <section id="tabTasksView" class="cmd-tab-pane">
+          <!-- Simplified Quick Task Allocator -->
+          <form id="formCreateTask" class="task-create-panel">
+            <div class="panel-head">
+              <span>&#x2728; ALLOCATE NEW TASK TO TEAM MEMBER</span>
+            </div>
+            <div class="form-row">
+              <input type="text" id="taskTitleInput" class="custom-input flex-3" placeholder="Task Title (e.g. Flash ESP32 v2.4 Firmware &amp; Test SoftAP)" required>
+              <select id="taskAssigneeSelect" class="custom-select flex-2"></select>
+              <select id="taskPrioritySelect" class="custom-select flex-1">
+                <option value="URGENT">&#x1F525; Urgent Priority</option>
+                <option value="HIGH">&#x1F6A8; High Priority</option>
+                <option value="MEDIUM" selected>&#x25C6; Medium Priority</option>
+                <option value="NORMAL">&#x25CB; Normal Priority</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <input type="text" id="taskDescInput" class="custom-input flex-3" placeholder="Task Scope / Deliverable Details (Optional)">
+              <input type="text" id="taskDeadlineInput" class="custom-input flex-1" placeholder="Due Time (e.g. Today 5:00 PM)">
+              <button type="submit" class="btn-primary-action flex-1">
+                <span>+ Allocate Task</span>
+              </button>
+            </div>
+          </form>
+
+          <div class="tasks-filter-bar">
+            <div class="filter-group" id="taskFilterGroup">
+              <button class="filter-chip active" data-filter="ALL">All Tasks (<span id="cntAll">0</span>)</button>
+              <button class="filter-chip" data-filter="ASSIGNED">Assigned (<span id="cntAssigned">0</span>)</button>
+              <button class="filter-chip" data-filter="REACHED">In Progress (<span id="cntReached">0</span>)</button>
+              <button class="filter-chip" data-filter="ACCOMPLISHED">Accomplished (<span id="cntAccomplished">0</span>)</button>
+            </div>
+          </div>
+
+          <div class="tasks-scroll-area" id="adminTasksList"></div>
+
+          <div class="accomplishments-feed-panel">
+            <div class="feed-head">
+              <span>&#x1F3C6; RECENT TASK ACCOMPLISHMENT RECEIPTS</span>
+            </div>
+            <div class="feed-list" id="accomplishmentsFeed"></div>
+          </div>
+        </section>
+
+        <!-- TAB 4: CHAT -->
+        <section id="tabChatView" class="cmd-tab-pane">
+          <div class="chat-workspace-container">
+            <aside class="chat-sidebar">
+              <div class="sidebar-section">
+                <span class="section-title">&#x1F4AC; TEAM CHANNELS</span>
+                <div class="channel-list" id="channelList">
+                  <button class="channel-item active" data-channel="general">
+                    <span class="ch-hash">#</span>
+                    <span class="ch-name">general</span>
+                  </button>
+                  <button class="channel-item" data-channel="hardware-lab">
+                    <span class="ch-hash">#</span>
+                    <span class="ch-name">hardware-lab</span>
+                  </button>
+                  <button class="channel-item" data-channel="ai-ml-firmware">
+                    <span class="ch-hash">#</span>
+                    <span class="ch-name">ai-ml-firmware</span>
+                  </button>
+                  <button class="channel-item" data-channel="announcements">
+                    <span class="ch-hash">&#x1F4E2;</span>
+                    <span class="ch-name">announcements</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="sidebar-section mt-16">
+                <span class="section-title">&#x1F464; DIRECT MESSAGES</span>
+                <div class="dm-worker-list" id="dmWorkerList"></div>
+              </div>
+            </aside>
+
+            <div class="chat-active-viewport">
+              <div class="chat-viewport-header">
+                <div class="header-chat-target">
+                  <span class="target-title" id="chatTargetTitle">#general</span>
+                  <span class="target-sub" id="chatTargetSub">Official Discussion &bull; End-to-End Encrypted</span>
+                </div>
+                <div class="header-chat-actions">
+                  <button class="btn-icon-action" id="btnCallFromChat" title="Start Audio Call">
+                    <span>&#x1F4DE; Audio</span>
+                  </button>
+                  <button class="btn-icon-action" id="btnVideoCallFromChat" title="Start Video Call">
+                    <span>&#x1F4F9; Video</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="chat-messages-scroll" id="chatMessagesContainer"></div>
+
+              <form id="formSendMessage" class="chat-input-bar">
+                <button type="button" class="btn-chat-tool" id="btnAttachSimFile" title="Attach File">&#x1F4CE;</button>
+                <input type="text" id="chatMessageInput" class="custom-chat-input" placeholder="Type an encrypted message... (Enter to send)" autocomplete="off" required>
+                <button type="button" class="btn-chat-tool" id="btnEmojiQuick" title="Emoji">&#x1F60E;</button>
+                <button type="submit" class="btn-chat-send">
+                  <span>SEND &#x27A4;</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 5: CALLING HUB -->
+        <section id="tabCallsView" class="cmd-tab-pane">
+          <div class="calling-hub-container">
+            <div class="calling-directory-panel">
+              <div class="huddle-hero-card">
+                <div class="huddle-info">
+                  <h3>REDDOT ALL-HANDS HUDDLE</h3>
+                  <p>Instant encrypted voice &amp; HD video conference for all architects and engineers.</p>
+                </div>
+                <button id="btnJoinHuddle" class="btn-huddle-launch">
+                  <span>&#x1F4F9; JOIN TEAM HUDDLE</span>
+                </button>
+              </div>
+
+              <div class="call-contacts-list-head">
+                <span>DIRECT WORKER CALLING</span>
+              </div>
+              <div class="call-contacts-grid" id="callContactsGrid"></div>
+            </div>
+
+            <div class="call-preview-panel">
+              <div class="preview-camera-card">
+                <div class="preview-camera-viewport" id="previewCameraBox">
+                  <video id="selfPreviewVideo" autoplay playsinline muted class="camera-video-feed"></video>
+                  <div class="camera-placeholder" id="previewCameraPlaceholder">
+                    <div class="camera-avatar-ring">
+                      <span id="previewUserInitials">JK</span>
+                    </div>
+                    <span class="placeholder-text">Camera Standby</span>
+                  </div>
+                  <canvas id="previewAudioWave" class="audio-wave-canvas"></canvas>
+                </div>
+                <div class="preview-controls">
+                  <button id="btnToggleSelfCam" class="btn-preview-toggle">
+                    <span>&#x1F4F9; Toggle Camera Preview</span>
+                  </button>
+                  <button id="btnTestMic" class="btn-preview-toggle">
+                    <span>&#x1F3A4; Test Microphone</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 6: PRIVATE SECURE DATABASE -->
+        <section id="tabDatabaseView" class="cmd-tab-pane">
+          <div class="db-management-panel">
+            <div class="db-overview-card">
+              <div class="db-status-banner">
+                <div class="db-shield-icon">&#x1F512;</div>
+                <div class="db-banner-text">
+                  <h3>AES-256-GCM PRIVATE SECURE DATABASE VAULT</h3>
+                  <p>All worker records, hashed security credentials, shift timesheets, and private messages are cryptographically sealed with PBKDF2 key derivation (100,000 iterations).</p>
+                </div>
+                <div class="db-health-badge">
+                  <span class="pulse-green"></span>
+                  <span>ONLINE &bull; SECURE</span>
+                </div>
+              </div>
+
+              <div class="db-metrics-row">
+                <div class="db-stat-box">
+                  <span class="db-stat-val" id="dbStatWorkers">4</span>
+                  <span class="db-stat-lbl">Worker Profiles</span>
+                </div>
+                <div class="db-stat-box">
+                  <span class="db-stat-val" id="dbStatTimesheets">3</span>
+                  <span class="db-stat-lbl">Timesheet Punches</span>
+                </div>
+                <div class="db-stat-box">
+                  <span class="db-stat-val" id="dbStatTasks">4</span>
+                  <span class="db-stat-lbl">Allocated Tasks</span>
+                </div>
+                <div class="db-stat-box">
+                  <span class="db-stat-val" id="dbStatMessages">7</span>
+                  <span class="db-stat-lbl">Encrypted Messages</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="db-config-grid">
+              <div class="db-card">
+                <div class="db-card-head">
+                  <span>&#x1F310; PRIVATE REMOTE ENDPOINT / SERVER SYNC</span>
+                </div>
+                <div class="db-card-body">
+                  <div class="form-group">
+                    <label>Private API Endpoint (HTTPS / WSS)</label>
+                    <input type="text" id="dbEndpointUrl" class="custom-input mono" placeholder="https://api.reddot.internal/v1/workstation" value="https://secure-db.reddot-internal.net/v1/sync">
+                  </div>
+                  <div class="form-group">
+                    <label>Bearer Token / Private Secret Key</label>
+                    <input type="password" id="dbSecretToken" class="custom-input mono" placeholder="Bearer sk_live_reddot_****************" value="sk_live_reddot_98a76f8b9e01cd42">
+                  </div>
+                  <div class="db-btn-group">
+                    <button id="btnTestDbConnection" class="btn-secondary-action">
+                      <span>&#x26A1; Test Connection</span>
+                    </button>
+                    <button id="btnSaveDbConfig" class="btn-primary-action">
+                      <span>&#x1F4BE; Save Config</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="db-card">
+                <div class="db-card-head">
+                  <span>&#x1F511; CRYPTOGRAPHIC VAULT &amp; BACKUP</span>
+                </div>
+                <div class="db-card-body">
+                  <p class="db-hint">Export an encrypted offline vault (.enc) containing all company timesheets, workers, tasks, and communications, or restore from an existing vault.</p>
+                  
+                  <div class="db-actions-vertical">
+                    <button id="btnExportEncryptedVault" class="btn-secondary-action w-100">
+                      <span>&#x1F512; Export Encrypted Vault (.enc)</span>
+                    </button>
+                    <label class="btn-secondary-action w-100 text-center cursor-pointer">
+                      <span>&#x1F4C2; Restore Database Vault (.enc / .json)</span>
+                      <input type="file" id="inputFileRestoreDb" class="hidden" accept=".enc,.json">
+                    </label>
+                    <button id="btnRotateDbKey" class="btn-secondary-action w-100 danger-text">
+                      <span>&#x1F504; Rotate Cryptographic Master Key</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ACTIVE CALL MODAL -->
+  <div id="activeCallModal" class="modal-overlay hidden">
+    <div class="call-modal-card">
+      <div class="call-modal-header">
+        <div class="call-active-badge">
+          <span class="pulse-red-dot"></span>
+          <span id="callTypeLabel">ENCRYPTED HD VIDEO CALL</span>
+        </div>
+        <div class="call-duration-tag" id="callDurationText">00:00</div>
+      </div>
+
+      <div class="call-video-stage">
+        <div class="remote-video-container" id="remoteVideoBox">
+          <video id="remoteVideoFeed" autoplay playsinline class="call-video-element"></video>
+          <div class="remote-avatar-fallback" id="remoteAvatarFallback">
+            <div class="giant-call-avatar" id="remoteCallAvatar">PR</div>
+            <h3 class="remote-call-name" id="remoteCallName">Priya (AI/ML)</h3>
+            <span class="call-connecting-text" id="callConnectingText">Connected &bull; Audio Stream Active</span>
+          </div>
+          <canvas id="activeCallWaveCanvas" class="call-audio-visualizer"></canvas>
+        </div>
+
+        <div class="pip-self-video" id="pipSelfVideoBox">
+          <video id="pipSelfVideoFeed" autoplay playsinline muted class="pip-video-element"></video>
+          <div class="pip-placeholder" id="pipPlaceholder">
+            <span>ME</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="call-control-toolbar">
+        <button id="btnCallMuteAudio" class="call-ctrl-btn" title="Mute / Unmute Microphone">
+          <span class="ctrl-icon">&#x1F3A4;</span>
+          <span class="ctrl-label" id="lblMuteAudio">Mute</span>
+        </button>
+        <button id="btnCallToggleVideo" class="call-ctrl-btn" title="Turn Camera On / Off">
+          <span class="ctrl-icon">&#x1F4F9;</span>
+          <span class="ctrl-label" id="lblToggleVideo">Camera</span>
+        </button>
+        <button id="btnCallShareScreen" class="call-ctrl-btn" title="Share Screen">
+          <span class="ctrl-icon">&#x1F5B5;</span>
+          <span class="ctrl-label">Share Screen</span>
+        </button>
+        <button id="btnCallEnd" class="call-ctrl-btn end-call" title="End Call">
+          <span class="ctrl-icon">&#x1F4DE;</span>
+          <span class="ctrl-label">End Call</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INCOMING CALL ALERT -->
+  <div id="incomingCallModal" class="modal-overlay hidden">
+    <div class="incoming-call-card">
+      <div class="incoming-ring-animation">
+        <div class="ring-pulse-circle"></div>
+        <div class="incoming-avatar" id="incomingCallerAvatar">PR</div>
+      </div>
+      <div class="incoming-meta">
+        <span class="incoming-badge">INCOMING REDDOT CALL</span>
+        <h3 class="incoming-name" id="incomingCallerName">Priya (RD-EMP-102)</h3>
+        <p class="incoming-sub">Direct Voice &amp; Video Connection Request</p>
+      </div>
+      <div class="incoming-actions">
+        <button id="btnRejectCall" class="btn-call-action reject">
+          <span>&#x2715; DECLINE</span>
+        </button>
+        <button id="btnAcceptCall" class="btn-call-action accept">
+          <span>&#x1F4DE; ACCEPT CALL</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATE WORKER MODAL -->
+  <div id="createWorkerModal" class="modal-overlay hidden">
+    <div class="modal-backdrop" id="createWorkerBackdrop"></div>
+    <div class="modal-card modal-lg">
+      <div class="modal-head">
+        <div class="head-title-wrap">
+          <span class="modal-icon">&#x1F465;</span>
+          <span class="modal-title">GENERATE NEW WORKER ID &amp; PROFILE</span>
+        </div>
+        <button id="btnCloseCreateWorker" class="modal-close-btn">&times;</button>
+      </div>
+
+      <form id="formCreateWorker" class="modal-body">
+        <p class="modal-hint">Generate an official employee ID, hashed access PIN, role credentials, and digital badge for new team members.</p>
+        
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Worker ID Code</label>
+            <input type="text" id="newWorkerId" class="custom-input mono" placeholder="e.g. RD-EMP-105" required>
+          </div>
+          <div class="form-group">
+            <label>Full Legal Name</label>
+            <input type="text" id="newWorkerName" class="custom-input" placeholder="e.g. Maya Sundaram" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Designation / Role</label>
+            <input type="text" id="newWorkerRole" class="custom-input" placeholder="e.g. Senior Cloud &amp; IoT Architect" required>
+          </div>
+          <div class="form-group">
+            <label>Department</label>
+            <select id="newWorkerDept" class="custom-select">
+              <option value="Hardware Architecture">Hardware Architecture</option>
+              <option value="AI / ML Systems">AI / ML Systems</option>
+              <option value="Firmware &amp; Embedded">Firmware &amp; Embedded</option>
+              <option value="Software &amp; Web">Software &amp; Web</option>
+              <option value="Operations &amp; Research">Operations &amp; Research</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label>Daily Target Hours</label>
+            <input type="number" id="newWorkerTargetHours" class="custom-input" value="8" min="1" max="16" required>
+          </div>
+          <div class="form-group">
+            <label>Access Security PIN (4-Digits)</label>
+            <input type="password" id="newWorkerPin" class="custom-input mono" placeholder="e.g. 1234" maxlength="6" required>
+          </div>
+          <div class="form-group">
+            <label>Avatar Color Accent</label>
+            <select id="newWorkerColor" class="custom-select">
+              <option value="#00d2ff" selected>Cyan / Neon Blue</option>
+              <option value="#00e676">Emerald Green</option>
+              <option value="#ff2a4d">REDDOT Crimson</option>
+              <option value="#ffb300">Amber Gold</option>
+              <option value="#b388ff">Deep Purple</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-foot">
+          <button type="button" id="btnCancelCreateWorker" class="btn-secondary-action">Cancel</button>
+          <button type="submit" class="btn-primary-action">
+            <span>&#x1F4B3; Create Worker ID &amp; Badge</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DIGITAL BADGE VIEWER -->
+  <div id="badgeViewerModal" class="modal-overlay hidden">
+    <div class="modal-backdrop" id="badgeViewerBackdrop"></div>
+    <div class="modal-card">
+      <div class="modal-head">
+        <span class="modal-title">OFFICIAL REDDOT IDENTIFICATION BADGE</span>
+        <button id="btnCloseBadgeViewer" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body text-center">
+        <div class="digital-badge-render" id="digitalBadgeCard">
+          <div class="badge-slot"></div>
+          <div class="badge-head">
+            <div class="badge-logo-mark">&#x25C6;</div>
+            <div class="badge-company-text">REDDOT ARCHITECTURE</div>
+          </div>
+          <div class="badge-avatar-wrap">
+            <div class="badge-avatar-img" id="badgeViewAvatar">JK</div>
+          </div>
+          <div class="badge-identity">
+            <h2 class="badge-person-name" id="badgeViewName">JAGADISH K</h2>
+            <p class="badge-person-role" id="badgeViewRole">FOUNDER &amp; TECHNICAL HEAD</p>
+            <span class="badge-person-dept" id="badgeViewDept">HARDWARE ARCHITECTURE</span>
+          </div>
+          <div class="badge-security-block">
+            <div class="badge-id-num" id="badgeViewIdNum">ID: RD-FOUNDER-001</div>
+            <div class="badge-barcode">|||| | ||||| || |||| ||| |||||</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-foot justify-between">
+        <button id="btnPrintBadge" class="btn-secondary-action">
+          <span>&#x1F5B6; Print ID Card</span>
+        </button>
+        <button id="btnCloseBadgeModal" class="btn-primary-action">
+          <span>Done</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="modal-overlay hidden">
+    <div class="modal-backdrop" id="loginBackdrop"></div>
+    <div class="modal-card">
+      <div class="modal-head">
+        <span class="modal-title">WORKSTATION LOGIN &amp; IDENTITY</span>
+        <button id="btnCloseLogin" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="login-tabs">
+          <button class="tab-btn active" id="tabBtnAdmin">Admin (Jagadish K)</button>
+          <button class="tab-btn" id="tabBtnEmployee">Worker Login</button>
+        </div>
+
+        <div id="adminLoginForm" class="login-tab-content">
+          <p class="login-hint">Admin mode grants full authority: Create worker IDs, monitor live work hours, allocate tasks, direct call workers, and manage the secure database.</p>
+          <div class="form-group">
+            <label>Admin Profile</label>
+            <input type="text" id="adminNameInput" class="custom-input" value="JAGADISH K" readonly>
+          </div>
+          <button id="btnConfirmAdmin" class="btn-modal-action">LOGIN AS ADMIN</button>
+        </div>
+
+        <div id="employeeLoginForm" class="login-tab-content hidden">
+          <p class="login-hint">Select your Worker ID and enter your 4-digit PIN to clock in and access assigned tasks.</p>
+          <div class="form-group">
+            <label>Select Worker ID</label>
+            <select id="loginEmpSelect" class="custom-select"></select>
+          </div>
+          <div class="form-group">
+            <label>Worker Passcode PIN</label>
+            <input type="password" id="loginWorkerPin" class="custom-input mono" placeholder="Default PIN: 1234" value="1234">
+          </div>
+          <button id="btnConfirmEmployee" class="btn-modal-action">LOGIN AS WORKER</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript Engine -->
+  <script src="wallpaper.js"></script>
+</body>
+</html>

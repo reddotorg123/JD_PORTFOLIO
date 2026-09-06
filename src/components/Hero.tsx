@@ -1,4 +1,4 @@
-﻿import { useRef } from "react";
+import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import idCardImg from "@/assets/id-card.png";
@@ -98,24 +98,26 @@ export const Hero = () => {
             className="relative pointer-events-auto cursor-grab active:cursor-grabbing perspective-1000"
           >
             {/* Lanyard Neck Strap */}
-            <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-6 h-40 bg-[#141418] border-x border-white/10 shadow-2xl flex flex-col items-center justify-end z-0">
+            <div className="absolute -top-44 left-1/2 -translate-x-1/2 w-7 h-44 bg-[#141418] border-x border-white/10 shadow-2xl flex flex-col items-center justify-end z-0">
               <div className="w-full h-full bg-gradient-to-b from-transparent via-[#222228] to-[#121216] opacity-90" />
               {/* Metallic Badge Clip */}
-              <div className="w-8 h-6 bg-gradient-to-b from-[#4a4a54] to-[#25252e] rounded-t-md border border-white/20 shadow-md flex items-center justify-center -mb-2">
-                <div className="w-3 h-1 rounded-full bg-black/90" />
+              <div className="w-9 h-7 bg-gradient-to-b from-[#4a4a54] to-[#25252e] rounded-t-md border border-white/20 shadow-md flex items-center justify-center -mb-2">
+                <div className="w-3.5 h-1.5 rounded-full bg-black/90" />
               </div>
             </div>
 
             {/* Badge Container Frame */}
-            <div className="w-[210px] sm:w-[245px] md:w-[265px] aspect-[1/1.56] rounded-[22px] bg-[#121216] p-2 border-[3px] border-[#25252e] shadow-[0_25px_70px_rgba(0,0,0,0.95)] relative overflow-hidden backdrop-blur-xl group">
+            <div className="w-[240px] sm:w-[285px] md:w-[315px] lg:w-[335px] aspect-[1/1.56] rounded-[26px] bg-[#121216] p-2.5 border-[3px] border-[#25252e] shadow-[0_30px_80px_rgba(0,0,0,0.95)] relative overflow-hidden backdrop-blur-xl group">
               {/* Top Clip Hole cutout */}
-              <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-8 h-2 rounded-full bg-[#08080a] border border-white/15 z-30" />
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-9 h-2.5 rounded-full bg-[#08080a] border border-white/15 z-30" />
 
               {/* ID Card Image */}
-              <div className="w-full h-full rounded-[16px] overflow-hidden relative shadow-inner bg-black">
+              <div className="w-full h-full rounded-[19px] overflow-hidden relative shadow-inner bg-black">
                 <img
                   src={idCardImg}
                   alt="Jagadish K - Technical Head & Founder"
+                  loading="eager"
+                  decoding="sync"
                   className="w-full h-full object-cover object-center filter contrast-105"
                 />
               </div>

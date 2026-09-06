@@ -1,4 +1,4 @@
-﻿import { ExternalLink, Paperclip } from "lucide-react";
+import { ExternalLink, Paperclip } from "lucide-react";
 
 const dossierProducts = [
   {
@@ -100,7 +100,7 @@ export const Products = () => {
             <div
               key={p.id}
               style={{ zIndex: p.zIndex }}
-              className={`sticky ${p.topOffset} select-none transition-transform duration-300`}
+              className={`sticky ${p.topOffset} select-none`}
             >
               {/* Folder Top Tab */}
               <div className="relative w-full h-8">
@@ -147,8 +147,8 @@ export const Products = () => {
                           <img
                             src={p.founderPhoto}
                             alt="Jagadish K"
-                            loading="lazy"
-                            decoding="async"
+                            loading="eager"
+                            decoding="sync"
                             className="w-full h-full object-cover filter grayscale contrast-125 pointer-events-none"
                           />
                         </div>
@@ -225,8 +225,8 @@ export const Products = () => {
                           <img
                             src={p.previewImg}
                             alt={p.headline}
-                            loading="lazy"
-                            decoding="async"
+                            loading="eager"
+                            decoding="sync"
                             className="w-full h-full object-cover object-top filter contrast-105 pointer-events-none"
                           />
                         </div>

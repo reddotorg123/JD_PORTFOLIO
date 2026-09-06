@@ -1,0 +1,20 @@
+{
+  "name": "jagadish-live-wallpaper",
+  "version": "1.0.0",
+  "description": "Futuristic Hardware Architect & IoT Live Animated Desktop Wallpaper for Jagadish K",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx -y serve . -l 5500",
+    "open": "start index.html"
+  },
+  "keywords": [
+    "live-wallpaper",
+    "lively-wallpaper",
+    "wallpaper-engine",
+    "jagadish-k",
+    "cyberpunk-hud",
+    "canvas-animation"
+  ],
+  "author": "Jagadish K",
+  "license": "MIT"
+}

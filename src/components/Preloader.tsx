@@ -1,8 +1,13 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Hexagon } from "lucide-react";
+import idCardImg from "@/assets/id-card.png";
+
+// Persistent global image cache so decoded bitmaps stay in memory and never re-request or flicker
+const portfolioAssetCache = new Map<string, HTMLImageElement>();
 
 const CRITICAL_IMAGES = [
+  idCardImg,
   "/id-card.png",
   "/products/reddot-preview.png",
   "/products/sem-preview.png",
@@ -23,42 +28,65 @@ export const Preloader = ({ onLoaded }: { onLoaded?: () => void }) => {
   const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
+    let isCancelled = false;
     let loadedCount = 0;
     const totalItems = CRITICAL_IMAGES.length + 2; // images + window load + fonts
 
     const updateProgress = () => {
+      if (isCancelled) return;
       loadedCount++;
       const percent = Math.min(Math.round((loadedCount / totalItems) * 100), 100);
       setProgress(percent);
 
       if (percent < 30) {
-        setStatusText("INITIALIZING SYSTEM ARCHITECTURE...");
+        setStatusText("INITIALIZING ARCHITECTURE...");
       } else if (percent < 70) {
-        setStatusText("LOADING ALL PRODUCT ASSETS & ARCHIVES...");
+        setStatusText("DECODING ALL IMAGES & ARCHIVES...");
       } else if (percent < 95) {
-        setStatusText("CALIBRATING 3D CORES & PERSPECTIVE...");
+        setStatusText("CALIBRATING 3D PERSPECTIVE...");
       } else {
         setStatusText("ALL ASSETS LOADED • SYSTEM READY");
       }
 
       if (loadedCount >= totalItems) {
         setTimeout(() => {
-          setIsFinished(true);
-          if (onLoaded) onLoaded();
-        }, 400);
+          if (!isCancelled) {
+            setIsFinished(true);
+            if (onLoaded) onLoaded();
+          }
+        }, 350);
       }
     };
 
-    // 1. Preload all critical images completely
-    CRITICAL_IMAGES.forEach((src) => {
+    // Preload and decode an image into GPU texture cache
+    const preloadImage = async (src: string) => {
+      if (portfolioAssetCache.has(src)) {
+        updateProgress();
+        return;
+      }
+
       const img = new Image();
       img.src = src;
-      if (img.complete) {
-        updateProgress();
-      } else {
-        img.onload = updateProgress;
-        img.onerror = updateProgress; // Don't block forever if a single asset 404s
+      portfolioAssetCache.set(src, img);
+
+      try {
+        if ("decode" in img) {
+          await img.decode();
+        } else if (!img.complete) {
+          await new Promise((resolve) => {
+            img.onload = resolve;
+            img.onerror = resolve;
+          });
+        }
+      } catch {
+        // Continue even if one decode fails
       }
+      updateProgress();
+    };
+
+    // 1. Preload and decode all critical images
+    CRITICAL_IMAGES.forEach((src) => {
+      preloadImage(src);
     });
 
     // 2. Wait for document fonts
@@ -77,15 +105,21 @@ export const Preloader = ({ onLoaded }: { onLoaded?: () => void }) => {
 
     // Fallback safety timeout so it never hangs indefinitely
     const safetyTimer = setTimeout(() => {
+      if (isCancelled) return;
       setProgress(100);
       setStatusText("SYSTEM READY");
       setTimeout(() => {
-        setIsFinished(true);
-        if (onLoaded) onLoaded();
-      }, 300);
-    }, 4500);
+        if (!isCancelled) {
+          setIsFinished(true);
+          if (onLoaded) onLoaded();
+        }
+      }, 250);
+    }, 3500);
 
-    return () => clearTimeout(safetyTimer);
+    return () => {
+      isCancelled = true;
+      clearTimeout(safetyTimer);
+    };
   }, [onLoaded]);
 
   return (

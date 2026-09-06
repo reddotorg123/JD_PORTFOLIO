@@ -1,4 +1,4 @@
-﻿import { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Trophy, Camera, X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 
@@ -162,14 +162,14 @@ export const Achievements = () => {
               whileDrag={{ scale: 1.15, zIndex: 60, cursor: "grabbing" }}
               initial={{ x: p.initial.x, y: p.initial.y, rotate: p.initial.rotate }}
               onClick={() => openLightbox(i)}
-              className="absolute w-36 sm:w-44 p-2 bg-[#14141a] rounded-xl border border-white/15 shadow-2xl cursor-pointer group will-change-transform"
+              className="absolute w-36 sm:w-44 p-2 bg-[#14141a] rounded-xl border border-white/15 shadow-2xl cursor-pointer group"
             >
               <div className="w-full aspect-[4/3] rounded-lg overflow-hidden bg-black mb-1.5 relative">
                 <img
                   src={p.src}
                   alt={p.caption}
-                  loading="lazy"
-                  decoding="async"
+                  loading="eager"
+                  decoding="sync"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none"
                 />
                 <div className="absolute top-1 right-1 p-1 rounded bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity">
@@ -198,7 +198,7 @@ export const Achievements = () => {
               whileHover={{ scale: 1.12, zIndex: 50, cursor: "grab" }}
               whileDrag={{ scale: 1.2, zIndex: 65, cursor: "grabbing" }}
               initial={{ x: s.initial.x, y: s.initial.y, rotate: s.initial.rotate }}
-              className={`absolute px-3.5 py-1.5 rounded-full font-tech font-bold text-[11px] shadow-lg tracking-wider flex items-center gap-1.5 border border-white/20 uppercase will-change-transform ${s.bg}`}
+              className={`absolute px-3.5 py-1.5 rounded-full font-tech font-bold text-[11px] shadow-lg tracking-wider flex items-center gap-1.5 border border-white/20 uppercase ${s.bg}`}
             >
               {s.icon && <s.icon className="w-3 h-3" />}
               <span>{s.label}</span>
@@ -280,7 +280,8 @@ export const Achievements = () => {
                 <img
                   src={selectedPhoto.src}
                   alt={selectedPhoto.caption}
-                  decoding="async"
+                  loading="eager"
+                  decoding="sync"
                   className="max-w-full max-h-full object-contain"
                 />
                 <button

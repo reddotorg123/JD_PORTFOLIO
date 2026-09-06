@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface Trace {
   x: number;
@@ -71,19 +71,16 @@ export const HardwareBackground = () => {
       ctx.lineWidth = 1;
       const step = 50;
 
+      ctx.beginPath();
       for (let x = 0; x < canvas.width; x += step) {
-        ctx.beginPath();
         ctx.moveTo(x, 0);
         ctx.lineTo(x, canvas.height);
-        ctx.stroke();
       }
-
       for (let y = 0; y < canvas.height; y += step) {
-        ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(canvas.width, y);
-        ctx.stroke();
       }
+      ctx.stroke();
     };
 
     const drawTrace = (trace: Trace) => {
@@ -116,6 +113,8 @@ export const HardwareBackground = () => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
+
+    let animationFrameId: number;
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -153,7 +152,7 @@ export const HardwareBackground = () => {
         drawBit(bit);
       });
 
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     };
 
     resizeCanvas();
@@ -161,15 +160,18 @@ export const HardwareBackground = () => {
     createBits();
     animate();
 
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       resizeCanvas();
       createTraces();
       createBits();
-    });
-    window.addEventListener("mousemove", handleMouseMove);
+    };
+
+    window.addEventListener("resize", handleResize, { passive: true });
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
